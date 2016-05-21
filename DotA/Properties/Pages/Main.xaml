@@ -1,0 +1,115 @@
+﻿<Page x:Class="DotA.Properties.Pages.Main"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DotA.Properties.Pages"
+	  xmlns:res="clr-namespace:DotA.Properties.Resources"
+	  mc:Ignorable="d" 
+	  Background="AliceBlue"
+      d:DesignHeight="600" d:DesignWidth="850"
+      Title="Main">
+
+	<Grid>
+		<Canvas x:Name="CMain" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="CMain_OnLoaded">
+			<Label x:Name="LNewGame" Canvas.Top="300" FontSize="50" FontFamily="Buxton Sketch" Background="{x:Null}" UseLayoutRounding="False" Panel.ZIndex="10" RenderTransformOrigin="0.5,0.5" Canvas.Left="225" Width="400" HorizontalContentAlignment="Center" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" MouseLeftButtonUp="NewGame_MouseLeftButtonUp"
+				   Content="{x:Static res:Resource_main.NewGame}">
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform Angle="0"/>
+						<TranslateTransform/>  
+					</TransformGroup>
+				</Label.RenderTransform>
+				<Label.Foreground>
+					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Blue"/>
+						<GradientStop Color="Red" Offset="1"/>
+					</LinearGradientBrush>
+				</Label.Foreground>
+			</Label>
+			<Label Canvas.Top="40" Canvas.Left="160" FontSize="190" FontFamily="el&amp;font gohtic!" Background="{x:Null}" UseLayoutRounding="False" Panel.ZIndex="10" RenderTransformOrigin="0.5,0.5">
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform Angle="-11.215"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Label.RenderTransform>
+				<Label.Foreground>
+					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Blue"/>
+						<GradientStop Color="Red" Offset="1"/>
+					</LinearGradientBrush>
+				</Label.Foreground>   DotA  
+			</Label>
+			<Label x:Name="LSettings" Canvas.Top="390" Canvas.Left="225" FontSize="50" FontFamily="Buxton Sketch" Background="{x:Null}" UseLayoutRounding="False" Panel.ZIndex="10" RenderTransformOrigin="0.5,0.5" Width="400" HorizontalContentAlignment="Center" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" MouseLeftButtonUp="Settings_MouseLeftButtonUp"
+				   Content="{x:Static res:Resource_main.Settings}">
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform Angle="0"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Label.RenderTransform>
+				<Label.Foreground>
+					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Blue"/>
+						<GradientStop Color="Red" Offset="1"/>
+					</LinearGradientBrush>
+				</Label.Foreground>
+			</Label>
+			<Label x:Name="LExit" Canvas.Top="480" Canvas.Left="225" FontSize="50" Background="{x:Null}" UseLayoutRounding="False" Panel.ZIndex="10" RenderTransformOrigin="0.5,0.5" MouseLeftButtonUp="Exit_MouseLeftButtonUp" Width="400" HorizontalContentAlignment="Center" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" FontFamily="Buxton Sketch" Content="{x:Static res:Resource_main.Exit}">
+				<Label.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform Angle="0"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Label.RenderTransform>
+				<Label.Foreground>
+					<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+						<LinearGradientBrush.RelativeTransform>
+							<TransformGroup>
+								<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
+								<SkewTransform CenterY="0.5" CenterX="0.5"/>
+								<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
+								<TranslateTransform/>
+							</TransformGroup>
+						</LinearGradientBrush.RelativeTransform>
+						<GradientStop Color="Blue"/>
+						<GradientStop Color="Red" Offset="1"/>
+					</LinearGradientBrush>
+				</Label.Foreground>
+			</Label>
+		</Canvas>
+	</Grid>
+</Page>

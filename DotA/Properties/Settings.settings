@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DotA.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AppCulture" Type="System.Globalization.CultureInfo" Scope="User">
+      <Value Profile="(Default)">ru-RU</Value>
+    </Setting>
+    <Setting Name="UserColor" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFFF0000</Value>
+    </Setting>
+    <Setting Name="UserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">NoName</Value>
+    </Setting>
+    <Setting Name="FieldH" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">32</Value>
+    </Setting>
+    <Setting Name="FieldW" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">39</Value>
+    </Setting>
+    <Setting Name="UserForm" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

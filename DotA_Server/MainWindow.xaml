@@ -1,0 +1,19 @@
+﻿<Window x:Class="DotA_Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DotA_Server"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="308.505">
+    <Grid>
+		<RichTextBox x:Name="TbMain" HorizontalAlignment="Stretch" Margin="10,50,10,10" VerticalAlignment="Stretch">
+			<FlowDocument>
+				<Paragraph>
+				</Paragraph>
+			</FlowDocument>
+		</RichTextBox>
+		<Button x:Name="BStart" Height="20" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,15" Click="Start_OnClick">Start</Button>
+		<Button x:Name="BStop" IsEnabled="False" Height="20" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10,15" Click="Stop_OnClick">Stop</Button>
+	</Grid>
+</Window>
