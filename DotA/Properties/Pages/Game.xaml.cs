@@ -114,22 +114,17 @@ namespace DotA.Properties.Pages
 		public HubConnection Connection { get; set; }
 		public const string ServerUri = "http://localhost:13666/signalr";
 		public int Room;
+
 		private async void ConnectAsync()
 		{
 			Connection = new HubConnection(ServerUri);
 			Connection.Closed += Connection_Closed;
-			HubProxy = Connection.CreateHubProxy(User.UserName);
-
-			HubProxy.On<string, string, int>("AddMessage", (name, message, room) =>
-				Dispatcher.Invoke(() =>
-				{ if (Room == room) MessageBox.Show($"{name}: {message}\r"); }
+			HubProxy = Connection.CreateHubProxy("MyHub");
+			HubProxy.On<string, string>("AddMessage", (name, message) =>
+				this.Dispatcher.Invoke(() =>
+					MessageBox.Show($"{name}: {message}\r")
 					)
 				);
-			HubProxy.On<string, int>("AddString", (message, room) =>
-				 Dispatcher.Invoke(() =>
-				 { if (Room == room) MessageBox.Show($"{message}\r"); }
-				 )
-			 );
 			try
 			{
 				await Connection.Start();
@@ -138,11 +133,8 @@ namespace DotA.Properties.Pages
 			{
 				MessageBox.Show("Unable to connect to server: Start server before connecting clients.");
 			}
-			catch (Exception e)
-			{
-				MessageBox.Show(e.Message);
-			}
 		}
+
 
 		void Connection_Closed()
 		{

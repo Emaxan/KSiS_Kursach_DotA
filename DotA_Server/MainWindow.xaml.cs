@@ -83,26 +83,26 @@ namespace DotA_Server
 		{
 			Clients.All.addMessage(name, message, Users.FindById(Context.ConnectionId).Room);
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow) Application.Current.MainWindow).WriteToConsole($"Client send: {name}:{message}"));
+				((MainWindow)Application.Current.MainWindow).WriteToConsole($"Client send: {name}:{message}"));
 		}
 
 		public void SendString(string str)
 		{
 			Clients.All.addString(str, Users.FindById(Context.ConnectionId).Room);
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow) Application.Current.MainWindow).WriteToConsole($"Client send: {str}"));
+				((MainWindow)Application.Current.MainWindow).WriteToConsole($"Client send: {str}"));
 		}
 
-		//public void SetRoom(int room)	
-		//{
-		//	Users.FindById(Context.ConnectionId).Room = room;
-		//}
+		public void SetRoom(int room)
+		{
+			Users.FindById(Context.ConnectionId).Room = room;
+		}
 
 		public override Task OnConnected()
 		{
 			Application.Current.Dispatcher.Invoke(() =>
 				((MainWindow) Application.Current.MainWindow).WriteToConsole("Client connected: " + Context.ConnectionId));
-			//Users.AddUser(new User(Context.ConnectionId));
+			Users.AddUser(new User(Context.ConnectionId));
 			return base.OnConnected();
 		}
 
@@ -110,21 +110,21 @@ namespace DotA_Server
 		{
 			Application.Current.Dispatcher.Invoke(() =>
 				((MainWindow) Application.Current.MainWindow).WriteToConsole("Client disconnected: " + Context.ConnectionId));
-			//Users.RemoveUserWithId(Context.ConnectionId);
+			Users.RemoveUserWithId(Context.ConnectionId);
 			return base.OnDisconnected(stopCalled);
 		}
 
 		public void Show(string mes)
 		{
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow) Application.Current.MainWindow).WriteToConsole(mes));
+				((MainWindow)Application.Current.MainWindow).WriteToConsole(mes));
 		}
 
 		public void SendClients()
 		{
 			SendString("Cients :-)");
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow) Application.Current.MainWindow).WriteToConsole("Client requests list of clients."));
+				((MainWindow)Application.Current.MainWindow).WriteToConsole("Client requests list of clients."));
 		}
 	}
 
