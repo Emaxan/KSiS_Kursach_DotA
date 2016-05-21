@@ -121,8 +121,13 @@ namespace DotA.Properties.Pages
 			Connection.Closed += Connection_Closed;
 			HubProxy = Connection.CreateHubProxy("MyHub");
 			HubProxy.On<string, string>("AddMessage", (name, message) =>
-				this.Dispatcher.Invoke(() =>
+				Dispatcher.Invoke(() =>
 					MessageBox.Show($"{name}: {message}\r")
+					)
+				);
+			HubProxy.On<string, int>("AddMessage", (message, room) =>
+				Dispatcher.Invoke(() =>
+				{ if (Room == room) MessageBox.Show($"{message}\r"); }
 					)
 				);
 			try
