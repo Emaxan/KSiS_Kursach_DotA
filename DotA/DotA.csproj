@@ -102,6 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChatMessage.cs" />
+    <Compile Include="ChatRoom.cs" />
+    <Compile Include="ChatUser.cs" />
     <Compile Include="Forms\Circle.cs" />
     <Compile Include="Forms\Cross.cs" />
     <Compile Include="Forms\Form.cs" />

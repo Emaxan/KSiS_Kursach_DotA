@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.AspNet.SignalR;
@@ -72,37 +77,83 @@ namespace DotA_Server
 	{
 		public void Configuration(IAppBuilder app)
 		{
+			var hubConfiguration = new HubConfiguration {EnableDetailedErrors = true};
 			app.UseCors(CorsOptions.AllowAll);
-			app.MapSignalR();
+			app.MapSignalR(hubConfiguration);
 		}
 	}
 
 	public class MyHub : Hub
 	{
+		private static readonly ConcurrentDictionary<string, ChatUser> _users =
+			new ConcurrentDictionary<string, ChatUser>(StringComparer.OrdinalIgnoreCase);
+
+		private static readonly ConcurrentDictionary<string, HashSet<string>> _userRooms =
+			new ConcurrentDictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+
+		private static readonly ConcurrentDictionary<string, ChatRoom> _rooms =
+			new ConcurrentDictionary<string, ChatRoom>(StringComparer.OrdinalIgnoreCase);
+
+		public void Join(string name)
+		{
+			AddUser(name);
+			Clients.Caller.UserLoggedIn();
+			Application.Current.Dispatcher.Invoke(() =>
+				((MainWindow) Application.Current.MainWindow).WriteToConsole($"User {name} has id {Context.ConnectionId}"));
+		}
+
 		public void SendMessage(string name, string message)
 		{
-			Clients.All.addMessage(name, message, Users.FindById(Context.ConnectionId).Room);
+			Clients.All.addMessage(name, message);
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow)Application.Current.MainWindow).WriteToConsole($"Client send: {name}:{message}"));
+				((MainWindow) Application.Current.MainWindow).WriteToConsole($"Server send: {name}:{message}"));
 		}
 
 		public void SendString(string str)
 		{
-			Clients.All.addString(str, Users.FindById(Context.ConnectionId).Room);
+			Clients.All.addString(str);
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow)Application.Current.MainWindow).WriteToConsole($"Client send: {str}"));
+				((MainWindow) Application.Current.MainWindow).WriteToConsole($"Server send: {str}"));
 		}
 
-		public void SetRoom(int room)
+		public bool SetRoom(string key)
 		{
-			Users.FindById(Context.ConnectionId).Room = room;
+			ChatRoom cr;
+			var room = _rooms.TryGetValue(key, out cr);
+			if (!room) return false;
+			Clients.Caller.room = key;
+			Clients.Caller.RoomSeted();
+			Application.Current.Dispatcher.Invoke(() =>
+				((MainWindow)Application.Current.MainWindow).WriteToConsole($"User {Clients.Caller.name} insert to the {key} room."));
+			return true;
+		}
+
+		public bool AddRoom(string key)
+		{
+			var res = _rooms.TryAdd(key, new ChatRoom {Name = key});
+			Clients.Caller.RoomAdded();
+			if (!res) return false;
+			_rooms[key].Users.Add(Context.ConnectionId);
+			Application.Current.Dispatcher.Invoke(() =>
+				((MainWindow)Application.Current.MainWindow).WriteToConsole($"Room {key} added."));
+			return true;
+		}
+
+		public bool DeleteRoom(string key)
+		{
+			ChatRoom room;
+			var res = _rooms.TryRemove(key, out room);
+			if (!res) return false;
+			Application.Current.Dispatcher.Invoke(() =>
+				((MainWindow)Application.Current.MainWindow).WriteToConsole($"Room {key} deleted."));
+			return true;
 		}
 
 		public override Task OnConnected()
 		{
 			Application.Current.Dispatcher.Invoke(() =>
 				((MainWindow) Application.Current.MainWindow).WriteToConsole("Client connected: " + Context.ConnectionId));
-			Users.AddUser(new User(Context.ConnectionId));
+			Clients.Caller.ConnectionComplete();
 			return base.OnConnected();
 		}
 
@@ -110,59 +161,58 @@ namespace DotA_Server
 		{
 			Application.Current.Dispatcher.Invoke(() =>
 				((MainWindow) Application.Current.MainWindow).WriteToConsole("Client disconnected: " + Context.ConnectionId));
-			Users.RemoveUserWithId(Context.ConnectionId);
+
+			var user = _users.Values.FirstOrDefault(u => u.ConnectionId == Context.ConnectionId);
+			if (user == null) return base.OnDisconnected(stopCalled);
+
+			ChatUser ignoredUser;
+			_users.TryRemove(user.Name, out ignoredUser);
+
+			// Leave all rooms
+			HashSet<string> rooms;
+			if (_userRooms.TryGetValue(user.Name, out rooms))
+			{
+				foreach (var room in rooms)
+				{
+					Clients.Group(room).leave(user);
+					var chatRoom = _rooms[room];
+					chatRoom.Users.Remove(user.Name);
+				}
+			}
+
+			HashSet<string> ignoredRoom;
+			_userRooms.TryRemove(user.Name, out ignoredRoom);
 			return base.OnDisconnected(stopCalled);
 		}
 
-		public void Show(string mes)
+		public IEnumerable<ChatUser> GetUsers() => GetUsersByRoom(Clients.Caller.room);
+
+		public IEnumerable<ChatUser> GetUsersByRoom(string key) => string.IsNullOrEmpty(key)
+																		? Enumerable.Empty<ChatUser>()
+																		: from name in _rooms[key].Users
+																			select _users[name];
+
+		public ChatRoom GetRoom() => Clients.Caller.room;
+
+		public ChatRoom GetRoomByKey(string key) => _rooms[key];
+
+		public IEnumerable<ChatRoom> GetRooms() => _rooms.Values;
+
+		private static string GetMd5Hash(string name) => string.Join("", MD5.Create().ComputeHash(Encoding.Default.GetBytes(name)).Select(b => b.ToString("x2")));
+
+		public ChatUser AddUser(string newUserName)
 		{
-			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow)Application.Current.MainWindow).WriteToConsole(mes));
+			var user = new ChatUser(newUserName, GetMd5Hash(newUserName)) {ConnectionId = Context.ConnectionId};
+			_users[Context.ConnectionId] = user;
+			_userRooms[Context.ConnectionId] = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+			Clients.Caller.name = user.Name;
+			Clients.Caller.hash = user.Hash;
+			Clients.Caller.id = user.Id;
+
+			Clients.Caller.addUser(user);
+
+			return user;
 		}
-
-		public void SendClients()
-		{
-			SendString("Cients :-)");
-			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow)Application.Current.MainWindow).WriteToConsole("Client requests list of clients."));
-		}
-	}
-
-	public static class Users
-	{
-		private static int _size;
-		private static User[] _users = new User[0];
-
-		public static void AddUser(User user)
-		{
-			Array.Resize(ref _users, ++_size);
-			_users[_size - 1] = user;
-		}
-
-		public static void RemoveUserWithId(string id)
-		{
-			var i = 0;
-			while (!Equals(_users[i].ConnectionId, id)) i++;
-			for (; i < _size - 1; i++) _users[i] = _users[i + 1];
-		}
-
-		public static User FindById(string id)
-		{
-			var i = 0;
-			while (!Equals(_users[i].ConnectionId, id)) i++;
-			return _users[i];
-		}
-
-	}
-
-	public class User
-	{
-		public User(string connextionId)
-		{
-			ConnectionId = connextionId;
-		}
-
-		public string ConnectionId { get; set; }
-		public int Room { get; set; } = -1;
 	}
 }

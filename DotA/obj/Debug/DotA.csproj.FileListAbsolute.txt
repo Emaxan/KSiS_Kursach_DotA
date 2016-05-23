@@ -32,7 +32,6 @@ Z:\Programs\VS\kurs_proect_3\DotA\DotA\bin\Debug\img\ButtonOffBG1.png
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\bin\Debug\DotA.exe
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\bin\Debug\DotA.pdb
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\bin\Debug\ru-RU\DotA.resources.dll
-Z:\Programs\VS\kurs_proect_3\DotA\DotA\obj\Debug\DotA.csprojResolveAssemblyReference.cache
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\obj\Debug\MainWindow.g.cs
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\obj\Debug\Properties\Pages\Game.g.cs
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\obj\Debug\Properties\Pages\Main.g.cs
@@ -67,3 +66,4 @@ Z:\Programs\VS\kurs_proect_3\DotA\DotA\bin\Debug\Microsoft.Owin.xml
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\bin\Debug\Microsoft.Owin.Security.xml
 Z:\Programs\VS\kurs_proect_3\DotA\DotA\bin\Debug\Newtonsoft.Json.xml
+Z:\Programs\VS\kurs_proect_3\DotA\DotA\obj\Debug\DotA.csprojResolveAssemblyReference.cache
