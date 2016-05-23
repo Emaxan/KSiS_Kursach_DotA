@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -35,7 +36,7 @@ namespace DotA.Properties.Pages
 
 		private void CMain_OnLoaded(object sender, RoutedEventArgs e)
 		{
-
+			DrawLine(CMain);
 			_gs.X = Properties.Settings.Default.FieldW;
 			_gs.Y = Properties.Settings.Default.FieldH;
 			User.UserName = Properties.Settings.Default.UserName;
@@ -136,7 +137,6 @@ namespace DotA.Properties.Pages
 
 		private async void Start_Click(object sender, RoutedEventArgs e)
 		{
-			
 			while (!Connected){}
 
 			User.UserName = TbName.Text;
@@ -176,12 +176,12 @@ namespace DotA.Properties.Pages
 			var room = ((ChatRoom) LvRooms.SelectedItem).Name;
 			await HubProxy.Invoke("join", User.UserName);
 			while (!LogIn) { }
-			var res = HubProxy.Invoke<bool>("setRoom", room).Result;
+			var res = await HubProxy.Invoke<bool>("setRoom", room);
 			if (res) while (!RoomSeted) { }
 			else { MessageBox.Show("Cant Set Room"); return; }
 
 			BForm.Visibility = Visibility.Collapsed;
-
+			CMain.Children.Clear();
 			CMain.Children.Add(_dot.Obj);
 			DrawLine(CMain, _gs.Y, _gs.X);
 			_matrix = new byte[FieldH + 1, FieldW + 1];
@@ -189,14 +189,15 @@ namespace DotA.Properties.Pages
 
 		private void AddRoom_Click (object sender, RoutedEventArgs e)
 		{
+			TbRoomName.Text = string.Empty;
 			BForm.Visibility = Visibility.Collapsed;
 			BRoomName.Visibility = Visibility.Visible;
 		}
 		
-		private void BOk_OnClick(object sender, RoutedEventArgs e)
+		private async void BOk_OnClick(object sender, RoutedEventArgs e)
 		{
 			var key = TbRoomName.Text;
-			var res = HubProxy.Invoke<bool>("AddRoom", key).Result;
+			var res = await HubProxy.Invoke<bool>("AddRoom", key);
 			if (res) Rescan_Click(sender, e);
 			BRoomName.Visibility = Visibility.Collapsed;
 			BForm.Visibility = Visibility.Visible;
@@ -208,17 +209,17 @@ namespace DotA.Properties.Pages
 			BForm.Visibility = Visibility.Visible;
 		}
 
-		private void DeleteRoom_Click(object sender, RoutedEventArgs e)
+		private async void DeleteRoom_Click(object sender, RoutedEventArgs e)
 		{
 			if (LvRooms.SelectedIndex < 0) return;
 			var key = ((ChatRoom) LvRooms.SelectedItem).Name;
-			var res = HubProxy.Invoke<bool>("DeleteRoom", key).Result;
-			//if (res) Rescan_Click(sender, e); TODO виснет
+			var res = await HubProxy.Invoke<bool>("DeleteRoom", key);
+			if (res) Rescan_Click(sender, e);
 		}
 
-		private void Rescan_Click(object sender, RoutedEventArgs e)
+		private async void Rescan_Click(object sender, RoutedEventArgs e)
 		{
-			var rooms = HubProxy.Invoke<IEnumerable<ChatRoom>>("getRooms").Result;
+			var rooms = await HubProxy.Invoke<IEnumerable<ChatRoom>>("GetRooms");
 			LvRooms.ItemsSource = null;
 			LvRooms.Items.Clear();
 			if (rooms.Count() != 0)
@@ -263,7 +264,7 @@ namespace DotA.Properties.Pages
 				MessageBox.Show("Unable to connect to server.");
 			}
 			
-			var rooms = HubProxy.Invoke<IEnumerable<ChatRoom>>("GetRooms").Result;
+			var rooms = await HubProxy.Invoke<IEnumerable<ChatRoom>>("GetRooms");
 			if (rooms.Count() != 0)
 				LvRooms.ItemsSource = rooms;
 			else

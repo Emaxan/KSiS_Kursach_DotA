@@ -11,7 +11,7 @@
 	<Grid>
 		<Border Background="AliceBlue">
 			<Canvas x:Name="CMain" Loaded="CMain_OnLoaded">
-				<Border x:Name="BForm"  Height="450" Canvas.Left="100" Canvas.Top="100" Width="650">
+				<Border x:Name="BForm"  Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Panel.ZIndex="10">
 					<Grid>
 						<Label FontSize="20" Content="Name:" Margin="100,0,450,410"/>
 						<TextBox x:Name="TbName" FontSize="20" Margin="200,0,250,410" />
@@ -36,7 +36,7 @@
 						<Button FontSize="20" Click="Rescan_Click " Content="Rescan..." Margin="530,380,0,30"/>
 					</Grid>
 				</Border>
-				<Border x:Name="BRoomName" Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Visibility="Collapsed">
+				<Border x:Name="BRoomName" Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Visibility="Collapsed" Panel.ZIndex="10">
 					<Grid>
 						<Label FontSize="20" Height="40" Width="400" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,100,0,0">Room Name</Label>
 						<TextBox x:Name="TbRoomName" Height="40" Width="400" VerticalAlignment="Top" Margin="0,100,0,0" />
