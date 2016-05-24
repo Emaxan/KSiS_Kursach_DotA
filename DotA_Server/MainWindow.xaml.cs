@@ -110,7 +110,7 @@ namespace DotA_Server
 
 	public class MyHub : Hub
 	{
-		private static byte[,] _matrix;
+		//private static byte[,] _matrix;
 
 		private static readonly ConcurrentDictionary<string, ChatUser> Users =
 			new ConcurrentDictionary<string, ChatUser>(StringComparer.OrdinalIgnoreCase);
@@ -150,6 +150,7 @@ namespace DotA_Server
 			if (!room) return false;
 			Clients.Caller.room = key;
 			Clients.Caller.RoomSeted();
+			UserRooms[Context.ConnectionId].Add(key);
 			Application.Current.Dispatcher.Invoke(() =>
 				((MainWindow) Application.Current.MainWindow).WriteToConsole($"User {Clients.Caller.name} insert to the {key} room."));
 			return true;
@@ -278,12 +279,12 @@ namespace DotA_Server
 		{
 			Rooms[Clients.Caller.room].FieldX = (byte)x;
 			Rooms[Clients.Caller.room].FieldY = (byte)y;
-			_matrix = new byte[y,x];
+			Rooms[Clients.Caller.room].Matrix = new byte[y,x];
 			for (var i = 0; i < y; i++)
 			{
 				for (var j = 0; j < x; j++)
 				{
-					_matrix[i, j] = 255;
+					Rooms[Clients.Caller.room].Matrix[i, j] = 255;
 				}
 			}
 			Application.Current.Dispatcher.Invoke(() =>
@@ -293,15 +294,20 @@ namespace DotA_Server
 		public bool SetDotPosition(int x, int y)
 		{
 			if ((y < 0) || (x < 0) || (x > Rooms[Clients.Caller.room].FieldX) || (y > Rooms[Clients.Caller.room].FieldY) ||
-			    (_matrix[y, x] != 255))
+			    (Rooms[Clients.Caller.room].Matrix[y, x] != 255))
 			{
 				Application.Current.Dispatcher.Invoke(() =>
-					((MainWindow)Application.Current.MainWindow).WriteToConsole($"Error {(x < 0 ? "x<0" : "")} {(y < 0 ? "y<0" : "")} {(x > Rooms[Clients.Caller.room].FieldX ? "x>field" : "")} {(y > Rooms[Clients.Caller.room].FieldY ? "y>field" : "")} {(_matrix[y, x] != 0 ? "dot seted" : "")}."));
+					((MainWindow)Application.Current.MainWindow).WriteToConsole($"Error {(x < 0 ? "x<0" : "")} {(y < 0 ? "y<0" : "")} {(x > Rooms[Clients.Caller.room].FieldX ? "x>field" : "")} {(y > Rooms[Clients.Caller.room].FieldY ? "y>field" : "")} {(Rooms[Clients.Caller.room].Matrix[y, x] != 0 ? "dot seted" : "")}."));
 				return false;
 			}
-			_matrix[y, x] = (byte)Clients.Caller.color; Application.Current.Dispatcher.Invoke(() =>
+			Rooms[Clients.Caller.room].Matrix[y, x] = (byte)Clients.Caller.color; Application.Current.Dispatcher.Invoke(() =>
 				 ((MainWindow)Application.Current.MainWindow).WriteToConsole($"{Clients.Caller.name} set dot to position {x}:{y}"));
-			Clients.All.SetDot(x, y, Clients.Caller.color, Clients.Caller.form, Context.ConnectionId);
+			foreach (var user in UserRooms.Where(u => u.Value.Contains(Clients.Caller.room)))
+			{
+				Clients.Client(user.Key).SetDot(x, y, Clients.Caller.color, Clients.Caller.form);
+			}
+			
+			//Clients.Others.SetDot(x, y, Clients.Caller.color, Clients.Caller.form);//TODO send only to users in the room
 			return true;
 		}
 	}

@@ -29,6 +29,11 @@ namespace DotA.Forms
 		public override sealed void SetPosition(int x, int y)
 			=>
 				Application.Current.Dispatcher.Invoke(
-					() => ((Ellipse) Obj).RenderTransform = new TranslateTransform(x - Radius, y - Radius));
+					() =>
+					{
+						((Ellipse) Obj).RenderTransform = new TranslateTransform(x - Radius, y - Radius);
+						((Ellipse)Obj).Stroke = new SolidColorBrush(Color);
+						((Ellipse)Obj).Fill = new SolidColorBrush(Color);
+					});
 	}
 }

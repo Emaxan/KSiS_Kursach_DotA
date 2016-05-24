@@ -142,15 +142,19 @@ namespace DotA.Properties.Pages
 			{
 				case 0:
 					User.UserColor = Colors.Red;
+					_dot.Color = Colors.Red;
 					break;
 				case 1:
 					User.UserColor = Colors.Green;
+					_dot.Color = Colors.Green;
 					break;
 				case 2:
 					User.UserColor = Colors.Blue;
+					_dot.Color = Colors.Blue;
 					break;
 				case 3:
 					User.UserColor = Colors.Yellow;
+					_dot.Color = Colors.Yellow;
 					break;
 			}
 			var form = (byte) CbForm.SelectedIndex;
@@ -317,11 +321,11 @@ namespace DotA.Properties.Pages
 			HubProxy.On("UserLoggedIn", () => LogIn = true);
 			HubProxy.On("RoomAdded", () => RoomAdded = true);
 			HubProxy.On("RoomSeted", () => RoomSeted = true);
-			HubProxy.On<byte, byte, byte, byte, string>("SetDot", (x, y, color, form, id) =>
+			HubProxy.On<byte, byte, byte, byte>("SetDot", (x, y, color, form) =>
 			{
 				x += (byte)OffsetX;
 				y += (byte)OffsetY;
-				if (Connection.ConnectionId == id) return;
+				//if (Connection.ConnectionId == id) return;
 				Forms.Form temp;
 				Color Ucolor;
 				switch (color)
