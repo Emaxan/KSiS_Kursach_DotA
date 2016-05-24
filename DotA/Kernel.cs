@@ -7,7 +7,7 @@ using System.Windows.Shapes;
 
 namespace DotA
 {
-	public class Kernel
+	public static class Kernel
 	{
 		public static int OffsetX, OffsetY, FieldH, FieldW;
 

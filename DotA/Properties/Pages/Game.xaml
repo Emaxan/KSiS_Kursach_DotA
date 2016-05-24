@@ -16,14 +16,14 @@
 						<Label FontSize="20" Content="Name:" Margin="100,0,450,410"/>
 						<TextBox x:Name="TbName" FontSize="20" Margin="200,0,250,410" />
 						<Label FontSize="20" Content="Color:" Margin="100,100,450,310"/>
-						<ComboBox x:Name="CbColor" FontSize="20" SelectedItem="1" SelectionChanged="CbColor_SelectionChanged" Margin="200,100,250,310">
+						<ComboBox x:Name="CbColor" FontSize="20" SelectedItem="1" Margin="200,100,250,310">
 							<ComboBoxItem Content="Red"/>
 							<ComboBoxItem Content="Green"/>
 							<ComboBoxItem Content="Blue"/>
 							<ComboBoxItem Content="Yellow"/>
 						</ComboBox>
 						<Label FontSize="20" Content="Form:" Margin="100,200,450,210"/>
-						<ComboBox x:Name="CbForm" FontSize="20" SelectedItem="1" SelectionChanged="CbForm_SelectionChanged" Margin="200,200,250,210">
+						<ComboBox x:Name="CbForm" FontSize="20" SelectedItem="1" Margin="200,200,250,210">
 							<ComboBoxItem Content="Circle"/>
 							<ComboBoxItem Content="Star"/>
 							<ComboBoxItem Content="Cross"/>

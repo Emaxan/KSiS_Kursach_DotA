@@ -4,8 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotA", "DotA\DotA.csproj", "{64300B65-398A-4DD4-88B8-377F1B3A8364}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A} = {C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotA_Server", "DotA_Server\DotA_Server.csproj", "{ACBD4AD8-87D9-4E50-AF89-3FA845434295}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A} = {C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneralClasses", "GeneralClasses\GeneralClasses.csproj", "{C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,10 @@ Global
 		{ACBD4AD8-87D9-4E50-AF89-3FA845434295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACBD4AD8-87D9-4E50-AF89-3FA845434295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACBD4AD8-87D9-4E50-AF89-3FA845434295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9A2BBC3-5CD1-4F25-A672-BB23FBC6373A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

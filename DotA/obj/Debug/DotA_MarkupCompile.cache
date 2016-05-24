@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-Z:\Programs\VS\kurs_proect_3\DotA\DotA\obj\Debug\
+\\Max-win10-x64\e\Programs\VS\kurs_proect_3\DotA\DotA\obj\Debug\
 DotA
 none
 false
 DEBUG;TRACE
-Z:\Programs\VS\kurs_proect_3\DotA\DotA\App.xaml
+\\Max-win10-x64\e\Programs\VS\kurs_proect_3\DotA\DotA\App.xaml
 51421572606
 7843740328
-18-328323774
-211168427650
+151679473101
+22946490332
 MainWindow.xaml;Properties\Pages\Game.xaml;Properties\Pages\GameParams.xaml;Properties\Pages\Main.xaml;Properties\Pages\Settings.xaml;
 
 False

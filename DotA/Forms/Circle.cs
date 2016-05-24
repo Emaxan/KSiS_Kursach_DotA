@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace DotA.Forms
@@ -13,18 +14,21 @@ namespace DotA.Forms
 
 		protected override void Create()
 		{
-			Obj = new Ellipse
-			{
-				Stroke = new SolidColorBrush(Color),
-				StrokeThickness = 1,
-				Fill = new SolidColorBrush(Color),
-				Width = 2*Radius,
-				Height = 2*Radius,
-				RenderTransform = new TranslateTransform(-100, -100)
-			};
+			Application.Current.Dispatcher.Invoke(() =>
+				Obj = new Ellipse
+				{
+					Stroke = new SolidColorBrush(Color),
+					StrokeThickness = 1,
+					Fill = new SolidColorBrush(Color),
+					Width = 2*Radius,
+					Height = 2*Radius,
+					RenderTransform = new TranslateTransform(-100, -100)
+				});
 		}
 
 		public override sealed void SetPosition(int x, int y)
-			=> ((Ellipse) Obj).RenderTransform = new TranslateTransform(x - Radius, y - Radius);
+			=>
+				Application.Current.Dispatcher.Invoke(
+					() => ((Ellipse) Obj).RenderTransform = new TranslateTransform(x - Radius, y - Radius));
 	}
 }

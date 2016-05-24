@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using DotA.Forms;
-using DotA_Server;
+using GeneralClasses;
 using Microsoft.AspNet.SignalR.Client;
 using static DotA.Kernel;
 
@@ -62,9 +61,6 @@ namespace DotA.Properties.Pages
 					CbForm.SelectedIndex = 2;
 					break;
 			}
-			//CMain.Children.Add(_dot.Obj);
-			//DrawLine(CMain, _gs.Y, _gs.X);
-			//_matrix = new byte[FieldH + 1, FieldW + 1];
 			ConnectAsync();
 		}
 
@@ -79,7 +75,7 @@ namespace DotA.Properties.Pages
 			yc -= OffsetY;
 			if (!((x >= OffsetX*LineWidth) && (x < (OffsetX + FieldW)*LineWidth) &&
 			      (y >= OffsetY*LineWidth) && (y < (OffsetY + FieldH)*LineWidth) &&
-			      _matrix[yc, xc] == 0)) return;
+			      _matrix[yc, xc] == 255)) return;
 			_dot.SetPosition(x, y);
 		}
 
@@ -89,7 +85,6 @@ namespace DotA.Properties.Pages
 			{
 				return;
 			}
-			var res = await HubProxy.Invoke<IEnumerable<ChatUser>>("GetUsers");
 
 			var pos = e.MouseDevice.GetPosition(this);
 			var xc = ((int) pos.X + LineWidth/2)/LineWidth;
@@ -100,7 +95,11 @@ namespace DotA.Properties.Pages
 			yc -= OffsetY;
 			if (!((x >= OffsetX*LineWidth) && (x < (OffsetX + FieldW)*LineWidth) &&
 			      (y >= OffsetY*LineWidth) && (y < (OffsetY + FieldH)*LineWidth) &&
-			      _matrix[yc, xc] == 0)) return;
+			      _matrix[yc, xc] == 255))
+			{
+				MessageBox.Show("You can't do it!cli");
+				return;
+			}
 			_dot.SetPosition(x, y);
 			Forms.Form temp;
 			switch (User.UserForm)
@@ -117,8 +116,13 @@ namespace DotA.Properties.Pages
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
+			if (!await HubProxy.Invoke<bool>("SetDotPosition", xc, yc))
+			{
+				MessageBox.Show("You can't do it!");
+				return;
+			}
 			temp.SetPosition(x, y);
-			_matrix[yc, xc] = 1;
+			_matrix[yc, xc] = User.UserColorByte;
 			CMain.Children.Add(temp.Obj);
 			AnalyzeMatrix();
 		}
@@ -126,21 +130,15 @@ namespace DotA.Properties.Pages
 		public void AnalyzeMatrix()
 		{
 		}
-
-		private void CbColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-		}
-
-		private void CbForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-		}
-
+		
 		private async void Start_Click(object sender, RoutedEventArgs e)
 		{
 			while (!Connected){}
 
 			User.UserName = TbName.Text;
-			switch (CbColor.SelectedIndex)
+			var color = (byte)CbColor.SelectedIndex;
+			User.UserColorByte = color;
+			switch (color)
 			{
 				case 0:
 					User.UserColor = Colors.Red;
@@ -155,7 +153,8 @@ namespace DotA.Properties.Pages
 					User.UserColor = Colors.Yellow;
 					break;
 			}
-			switch (CbForm.SelectedIndex)
+			var form = (byte) CbForm.SelectedIndex;
+			switch (form)
 			{
 				case 0:
 					User.UserForm = Form.Circle;
@@ -167,24 +166,42 @@ namespace DotA.Properties.Pages
 					User.UserForm = Form.Cross;
 					break;
 			}
-			if ((LvRooms.SelectedIndex == -1) || (LvRooms.Items[0] is ListViewItem))
+			if (!RoomSeted)
 			{
-				MessageBox.Show("Wrong Room!!");
-				return;
+				if ((LvRooms.SelectedIndex == -1) || (LvRooms.Items[0] is ListViewItem))
+				{
+					MessageBox.Show("Wrong Room!!");
+					return;
+				}
 			}
-
-			var room = ((ChatRoom) LvRooms.SelectedItem).Name;
-			await HubProxy.Invoke("join", User.UserName);
-			while (!LogIn) { }
-			var res = await HubProxy.Invoke<bool>("setRoom", room);
-			if (res) while (!RoomSeted) { }
-			else { MessageBox.Show("Cant Set Room"); return; }
+			if (!LogIn)
+			{
+				await HubProxy.Invoke("join", User.UserName, color, form);
+				while (!LogIn) { }
+			}
+			if (!RoomSeted)
+			{
+				var res = await HubProxy.Invoke<bool>("setRoom", ((ChatRoom)LvRooms.SelectedItem).Name);
+				if (res) while (!RoomSeted) { }
+				else
+				{
+					MessageBox.Show("Cant Set Room");
+					return;
+				}
+			}
 
 			BForm.Visibility = Visibility.Collapsed;
 			CMain.Children.Clear();
 			CMain.Children.Add(_dot.Obj);
 			DrawLine(CMain, _gs.Y, _gs.X);
 			_matrix = new byte[FieldH + 1, FieldW + 1];
+			for (var i = 0; i < FieldH + 1; i++)
+			{
+				for (var j = 0; j < FieldW + 1; j++)
+				{
+					_matrix[i, j] = 255;
+				}
+			}
 		}
 
 		private void AddRoom_Click (object sender, RoutedEventArgs e)
@@ -197,10 +214,54 @@ namespace DotA.Properties.Pages
 		private async void BOk_OnClick(object sender, RoutedEventArgs e)
 		{
 			var key = TbRoomName.Text;
-			var res = await HubProxy.Invoke<bool>("AddRoom", key);
-			if (res) Rescan_Click(sender, e);
-			BRoomName.Visibility = Visibility.Collapsed;
-			BForm.Visibility = Visibility.Visible;
+			if (await HubProxy.Invoke<bool>("AddRoom", key))
+			{
+				User.UserName = TbName.Text;
+				var color = (byte)CbColor.SelectedIndex;
+				User.UserColorByte = color;
+				switch (color)
+				{
+					case 0:
+						User.UserColor = Colors.Red;
+						break;
+					case 1:
+						User.UserColor = Colors.Green;
+						break;
+					case 2:
+						User.UserColor = Colors.Blue;
+						break;
+					case 3:
+						User.UserColor = Colors.Yellow;
+						break;
+				}
+				var form = (byte)CbForm.SelectedIndex;
+				switch (form)
+				{
+					case 0:
+						User.UserForm = Form.Circle;
+						break;
+					case 1:
+						User.UserForm = Form.Star;
+						break;
+					case 2:
+						User.UserForm = Form.Cross;
+						break;
+				}
+				await HubProxy.Invoke("join", User.UserName, User.UserColorByte, (byte)User.UserForm);
+				while (!LogIn) { }
+				if (await HubProxy.Invoke<bool>("SetRoom", key))
+				{
+					await HubProxy.Invoke("SetRoomField", _gs.X, _gs.Y);
+					Rescan_Click(sender, e);
+				}
+			}
+			if (!RoomSeted)
+			{
+				BRoomName.Visibility = Visibility.Collapsed;
+				BForm.Visibility = Visibility.Visible;
+			}
+			else
+				Start_Click(sender, e);
 		}
 
 		private void BCancel_OnClick(object sender, RoutedEventArgs e)
@@ -222,8 +283,9 @@ namespace DotA.Properties.Pages
 			var rooms = await HubProxy.Invoke<IEnumerable<ChatRoom>>("GetRooms");
 			LvRooms.ItemsSource = null;
 			LvRooms.Items.Clear();
-			if (rooms.Count() != 0)
-				LvRooms.ItemsSource = rooms;
+			var source = rooms as IList<ChatRoom> ?? rooms.ToList();
+			if (source.Count != 0)
+				LvRooms.ItemsSource = source;
 			else
 				LvRooms.Items.Add(new ListViewItem { Content = "No opened rooms" });
 		}
@@ -255,6 +317,49 @@ namespace DotA.Properties.Pages
 			HubProxy.On("UserLoggedIn", () => LogIn = true);
 			HubProxy.On("RoomAdded", () => RoomAdded = true);
 			HubProxy.On("RoomSeted", () => RoomSeted = true);
+			HubProxy.On<byte, byte, byte, byte, string>("SetDot", (x, y, color, form, id) =>
+			{
+				x += (byte)OffsetX;
+				y += (byte)OffsetY;
+				if (Connection.ConnectionId == id) return;
+				Forms.Form temp;
+				Color Ucolor;
+				switch (color)
+				{
+					case 0:
+						Ucolor = Colors.Red;
+						break;
+					case 1:
+						Ucolor = Colors.Green;
+						break;
+					case 2:
+						Ucolor = Colors.Blue;
+						break;
+					case 3:
+						Ucolor = Colors.Yellow;
+						break;
+					default:
+						Ucolor = User.UserColor;
+						break;
+				}
+				switch (form)
+				{
+					case 0:
+						temp = new Circle(Ucolor);
+						break;
+					case 1:
+						temp = new Star(Ucolor);
+						break;
+					case 2:
+						temp = new Cross(Ucolor);
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+				Application.Current.Dispatcher.Invoke(() => temp.SetPosition(x*LineWidth, y*LineWidth));
+				_matrix[y, x] = color;
+				Application.Current.Dispatcher.Invoke(() => CMain.Children.Add(temp.Obj));
+			});
 			try
 			{
 				await Connection.Start();
@@ -265,12 +370,12 @@ namespace DotA.Properties.Pages
 			}
 			
 			var rooms = await HubProxy.Invoke<IEnumerable<ChatRoom>>("GetRooms");
-			if (rooms.Count() != 0)
-				LvRooms.ItemsSource = rooms;
+			var source = rooms as IList<ChatRoom> ?? rooms.ToList();
+			if (source.Count != 0)
+				LvRooms.ItemsSource = source;
 			else
 				LvRooms.Items.Add(new ListViewItem {Content = "No opened rooms"});
 		}
-
 
 		private void Connection_Closed()
 		{
@@ -284,6 +389,7 @@ namespace DotA.Properties.Pages
 	{
 		public string UserName { get; set; }
 		public Color UserColor { get; set; }
+		public byte UserColorByte { get; set; }
 		public Form UserForm { get; set; }
 	}
 

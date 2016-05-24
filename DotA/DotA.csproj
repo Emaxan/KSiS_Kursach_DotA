@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GeneralClasses">
+      <HintPath>..\GeneralClasses\bin\Debug\GeneralClasses.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
       <Private>True</Private>
@@ -102,9 +105,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ChatMessage.cs" />
-    <Compile Include="ChatRoom.cs" />
-    <Compile Include="ChatUser.cs" />
     <Compile Include="Forms\Circle.cs" />
     <Compile Include="Forms\Cross.cs" />
     <Compile Include="Forms\Form.cs" />
