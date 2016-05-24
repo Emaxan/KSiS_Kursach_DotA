@@ -323,8 +323,6 @@ namespace DotA.Properties.Pages
 			HubProxy.On("RoomSeted", () => RoomSeted = true);
 			HubProxy.On<byte, byte, byte, byte>("SetDot", (x, y, color, form) =>
 			{
-				x += (byte)OffsetX;
-				y += (byte)OffsetY;
 				//if (Connection.ConnectionId == id) return;
 				Forms.Form temp;
 				Color Ucolor;
@@ -360,7 +358,7 @@ namespace DotA.Properties.Pages
 					default:
 						throw new ArgumentOutOfRangeException();
 				}
-				Application.Current.Dispatcher.Invoke(() => temp.SetPosition(x*LineWidth, y*LineWidth));
+				Application.Current.Dispatcher.Invoke(() => temp.SetPosition((x+OffsetX)*LineWidth, (y+OffsetY)*LineWidth));
 				_matrix[y, x] = color;
 				Application.Current.Dispatcher.Invoke(() => CMain.Children.Add(temp.Obj));
 			});

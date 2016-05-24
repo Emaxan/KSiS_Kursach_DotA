@@ -83,7 +83,7 @@ namespace DotA_Server
 
 		private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
 		{
-			Start_OnClick(sender, e);
+			//Start_OnClick(sender, e);
 		}
 
 		private void MainWindow_OnClosing(object sender, CancelEventArgs e)
@@ -297,17 +297,16 @@ namespace DotA_Server
 			    (Rooms[Clients.Caller.room].Matrix[y, x] != 255))
 			{
 				Application.Current.Dispatcher.Invoke(() =>
-					((MainWindow)Application.Current.MainWindow).WriteToConsole($"Error {(x < 0 ? "x<0" : "")} {(y < 0 ? "y<0" : "")} {(x > Rooms[Clients.Caller.room].FieldX ? "x>field" : "")} {(y > Rooms[Clients.Caller.room].FieldY ? "y>field" : "")} {(Rooms[Clients.Caller.room].Matrix[y, x] != 0 ? "dot seted" : "")}."));
+					((MainWindow)Application.Current.MainWindow).WriteToConsole($"Error {(x < 0 ? "x<0" : "")} {(y < 0 ? "y<0" : "")} {(x > Rooms[Clients.Caller.room].FieldX ? "x>field" : "")} {(y > Rooms[Clients.Caller.room].FieldY ? "y>field" : "")} {(Rooms[Clients.Caller.room].Matrix[y, x] != 255 ? "dot seted" : "")}."));
 				return false;
 			}
 			Rooms[Clients.Caller.room].Matrix[y, x] = (byte)Clients.Caller.color; Application.Current.Dispatcher.Invoke(() =>
 				 ((MainWindow)Application.Current.MainWindow).WriteToConsole($"{Clients.Caller.name} set dot to position {x}:{y}"));
 			foreach (var user in UserRooms.Where(u => u.Value.Contains(Clients.Caller.room)))
 			{
+				if(!user.Key.Equals(Context.ConnectionId))
 				Clients.Client(user.Key).SetDot(x, y, Clients.Caller.color, Clients.Caller.form);
 			}
-			
-			//Clients.Others.SetDot(x, y, Clients.Caller.color, Clients.Caller.form);//TODO send only to users in the room
 			return true;
 		}
 	}
