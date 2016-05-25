@@ -22,7 +22,7 @@ namespace DotA_Server
 	/// </summary>
 	public partial class MainWindow
 	{
-		private const string ServerUri = "http://localhost:13666";
+		private const string ServerUri = "http://*:13666";
 		private readonly StreamWriter _logger;
 
 		public MainWindow()
@@ -50,10 +50,14 @@ namespace DotA_Server
 			{
 				SignalR = WebApp.Start(ServerUri);
 			}
-			catch (TargetInvocationException)
+			catch (TargetInvocationException e)
 			{
-				WriteToConsole("A server is already running at " + ServerUri);
-				Dispatcher.Invoke(() => BStart.IsEnabled = true);
+				WriteToConsole("A server is already running at " + ServerUri + ' ' + e.Message + ' ' + e.InnerException);
+				Dispatcher.Invoke(() =>
+				{
+					BStart.IsEnabled = true;
+					BStop.IsEnabled = false;
+				});
 				return;
 			}
 			Dispatcher.Invoke(() => BStop.IsEnabled = true);
@@ -83,14 +87,14 @@ namespace DotA_Server
 
 		private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
 		{
-			//Start_OnClick(sender, e);
+			Start_OnClick(sender, e);
 		}
 
 		private void MainWindow_OnClosing(object sender, CancelEventArgs e)
 		{
 			if (BStop.IsEnabled)
 			{
-				SignalR.Dispose();
+				SignalR?.Dispose();
 				WriteToConsole("Server stoped...");
 			}
 			_logger.Flush();
@@ -110,8 +114,6 @@ namespace DotA_Server
 
 	public class MyHub : Hub
 	{
-		//private static byte[,] _matrix;
-
 		private static readonly ConcurrentDictionary<string, ChatUser> Users =
 			new ConcurrentDictionary<string, ChatUser>(StringComparer.OrdinalIgnoreCase);
 
@@ -149,8 +151,16 @@ namespace DotA_Server
 			var room = Rooms.TryGetValue(key, out cr);
 			if (!room) return false;
 			Clients.Caller.room = key;
+			Rooms[key].Users.Add(Context.ConnectionId);
 			Clients.Caller.RoomSeted();
 			UserRooms[Context.ConnectionId].Add(key);
+			Rooms[Clients.Caller.room].Queue.Enqueue(Context.ConnectionId);
+			if (GetUsers().Count() == 2)
+			{
+				var queue = (string)Rooms[Clients.Caller.room].Queue.Dequeue();
+				Clients.Client(queue).YourTurn();
+				Rooms[Clients.Caller.room].Queue.Enqueue(queue);
+			}
 			Application.Current.Dispatcher.Invoke(() =>
 				((MainWindow) Application.Current.MainWindow).WriteToConsole($"User {Clients.Caller.name} insert to the {key} room."));
 			return true;
@@ -162,6 +172,7 @@ namespace DotA_Server
 			Clients.Caller.RoomAdded();
 			if (!res) return false;
 			Rooms[key].Users.Add(Context.ConnectionId);
+			Rooms[key].Queue = new Queue<string>();
 			Application.Current.Dispatcher.Invoke(() =>
 				((MainWindow) Application.Current.MainWindow).WriteToConsole($"Room {key} added."));
 			return true;
@@ -307,6 +318,9 @@ namespace DotA_Server
 				if(!user.Key.Equals(Context.ConnectionId))
 				Clients.Client(user.Key).SetDot(x, y, Clients.Caller.color, Clients.Caller.form);
 			}
+			var queue = (string)Rooms[Clients.Caller.room].Queue.Dequeue();
+			Clients.Client(queue).YourTurn();
+			Rooms[Clients.Caller.room].Queue.Enqueue(queue);
 			return true;
 		}
 	}

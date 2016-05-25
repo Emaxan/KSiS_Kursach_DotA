@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace GeneralClasses
@@ -11,6 +12,7 @@ namespace GeneralClasses
 			Users = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 		}
 
+		public Queue<string> Queue;
 		public byte[,] Matrix;
 		public string Name { get; set; }
 		public List<ChatMessage> Messages { get; set; }

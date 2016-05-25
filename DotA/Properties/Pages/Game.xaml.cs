@@ -81,7 +81,7 @@ namespace DotA.Properties.Pages
 
 		private async void Game_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			if (!Connected || !LogIn || !RoomSeted)
+			if (!Connected || !LogIn || !RoomSeted || !YourTurn)
 			{
 				return;
 			}
@@ -124,7 +124,8 @@ namespace DotA.Properties.Pages
 			temp.SetPosition(x, y);
 			_matrix[yc, xc] = User.UserColorByte;
 			CMain.Children.Add(temp.Obj);
-			AnalyzeMatrix();
+			YourTurn = false;
+			//AnalyzeMatrix();
 		}
 
 		public void AnalyzeMatrix()
@@ -210,6 +211,7 @@ namespace DotA.Properties.Pages
 
 		private void AddRoom_Click (object sender, RoutedEventArgs e)
 		{
+			if(!Connected) return;
 			TbRoomName.Text = string.Empty;
 			BForm.Visibility = Visibility.Collapsed;
 			BRoomName.Visibility = Visibility.Visible;
@@ -217,6 +219,7 @@ namespace DotA.Properties.Pages
 		
 		private async void BOk_OnClick(object sender, RoutedEventArgs e)
 		{
+			if(!Connected) return;
 			var key = TbRoomName.Text;
 			if (await HubProxy.Invoke<bool>("AddRoom", key))
 			{
@@ -276,6 +279,7 @@ namespace DotA.Properties.Pages
 
 		private async void DeleteRoom_Click(object sender, RoutedEventArgs e)
 		{
+			if (!Connected) return;
 			if (LvRooms.SelectedIndex < 0) return;
 			var key = ((ChatRoom) LvRooms.SelectedItem).Name;
 			var res = await HubProxy.Invoke<bool>("DeleteRoom", key);
@@ -284,6 +288,7 @@ namespace DotA.Properties.Pages
 
 		private async void Rescan_Click(object sender, RoutedEventArgs e)
 		{
+			if(!Connected) return;
 			var rooms = await HubProxy.Invoke<IEnumerable<ChatRoom>>("GetRooms");
 			LvRooms.ItemsSource = null;
 			LvRooms.Items.Clear();
@@ -298,17 +303,17 @@ namespace DotA.Properties.Pages
 
 		#region Connection To Server
 
-		public bool Connected, LogIn, RoomAdded, RoomSeted;
+		public bool Connected, LogIn, RoomAdded, RoomSeted, YourTurn;
 		public IHubProxy HubProxy { get; set; }
 		public HubConnection Connection { get; set; }
 
 
-		public const string ServerUri = "http://localhost:13666/signalr";
+		public const string ServerUri = "http://192.168.1.2:13666/signalr";// "http://192.168.198.129:13666/signalr";
 
 		private async void ConnectAsync()
 		{
 			Connection = new HubConnection(ServerUri);
-			Connection.Closed += Connection_Closed;
+			//Connection.Closed += Connection_Closed;
 			Connection.Error += ex => Console.WriteLine($"SignalR error: {ex.Message}");
 			Connection.TraceLevel = TraceLevels.All;
 			Connection.TraceWriter = Console.Out;
@@ -323,37 +328,36 @@ namespace DotA.Properties.Pages
 			HubProxy.On("RoomSeted", () => RoomSeted = true);
 			HubProxy.On<byte, byte, byte, byte>("SetDot", (x, y, color, form) =>
 			{
-				//if (Connection.ConnectionId == id) return;
 				Forms.Form temp;
-				Color Ucolor;
+				Color ucolor;
 				switch (color)
 				{
 					case 0:
-						Ucolor = Colors.Red;
+						ucolor = Colors.Red;
 						break;
 					case 1:
-						Ucolor = Colors.Green;
+						ucolor = Colors.Green;
 						break;
 					case 2:
-						Ucolor = Colors.Blue;
+						ucolor = Colors.Blue;
 						break;
 					case 3:
-						Ucolor = Colors.Yellow;
+						ucolor = Colors.Yellow;
 						break;
 					default:
-						Ucolor = User.UserColor;
+						ucolor = User.UserColor;
 						break;
 				}
 				switch (form)
 				{
 					case 0:
-						temp = new Circle(Ucolor);
+						temp = new Circle(ucolor);
 						break;
 					case 1:
-						temp = new Star(Ucolor);
+						temp = new Star(ucolor);
 						break;
 					case 2:
-						temp = new Cross(Ucolor);
+						temp = new Cross(ucolor);
 						break;
 					default:
 						throw new ArgumentOutOfRangeException();
@@ -362,6 +366,7 @@ namespace DotA.Properties.Pages
 				_matrix[y, x] = color;
 				Application.Current.Dispatcher.Invoke(() => CMain.Children.Add(temp.Obj));
 			});
+			HubProxy.On("YourTurn", () => YourTurn = true);
 			try
 			{
 				await Connection.Start();
@@ -369,6 +374,7 @@ namespace DotA.Properties.Pages
 			catch (HttpRequestException)
 			{
 				MessageBox.Show("Unable to connect to server.");
+				return;
 			}
 			
 			var rooms = await HubProxy.Invoke<IEnumerable<ChatRoom>>("GetRooms");
@@ -377,11 +383,6 @@ namespace DotA.Properties.Pages
 				LvRooms.ItemsSource = source;
 			else
 				LvRooms.Items.Add(new ListViewItem {Content = "No opened rooms"});
-		}
-
-		private void Connection_Closed()
-		{
-			//TODO
 		}
 
 		#endregion
