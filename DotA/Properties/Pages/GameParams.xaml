@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  xmlns:res="clr-namespace:DotA.Properties.Resources"
       xmlns:local="clr-namespace:DotA.Properties.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="850"
@@ -11,7 +12,7 @@
 	<Grid>
 		<Border Background="AliceBlue">
 			<Canvas x:Name="CMain" Loaded="CMain_OnLoaded">
-				<Label Canvas.Top="498" Canvas.Left="548" FontSize="50" FontFamily="Buxton Sketch" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" Panel.ZIndex="10" Content="Start" MouseLeftButtonUp="StartClickHandler">
+				<Label Canvas.Top="498" Canvas.Left="548" FontSize="50" FontFamily="Buxton Sketch" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" Panel.ZIndex="10" Content="{x:Static res:Resource_main.GameParams_Start}" MouseLeftButtonUp="StartClickHandler">
 					<Label.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform/>
@@ -35,7 +36,7 @@
 						</LinearGradientBrush>
 					</Label.Foreground>
 				</Label>
-				<Label Canvas.Top="498" Canvas.Left="168" FontSize="50" FontFamily="Buxton Sketch" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" Panel.ZIndex="10" Content="Back" MouseLeftButtonUp="BackClickHandler">
+				<Label Canvas.Top="498" Canvas.Left="168" FontSize="50" FontFamily="Buxton Sketch" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" Panel.ZIndex="10" Content="{x:Static res:Resource_main.GameParams_Back}" MouseLeftButtonUp="BackClickHandler">
 					<Label.RenderTransform>
 						<TransformGroup>
 							<ScaleTransform/>

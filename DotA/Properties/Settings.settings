@@ -20,5 +20,8 @@
     <Setting Name="UserForm" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="ServerIp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.198.129</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

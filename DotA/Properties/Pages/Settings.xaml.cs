@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace DotA.Properties.Pages
 {
@@ -27,13 +24,15 @@ namespace DotA.Properties.Pages
 
 		private void CMain_OnLoaded(object sender, RoutedEventArgs e)
 		{
-			TbName.Text = (string) Properties.Settings.Default["UserName"];
+			TbName.Text = (string) Properties.Settings.Default.UserName;
 
-			var color = (Color) Properties.Settings.Default["UserColor"];
+			var color = (Color) Properties.Settings.Default.UserColor;
 			if (color == Colors.Red) RbRed.IsChecked = true;
 			else if (color == Colors.Blue) RbBlue.IsChecked = true;
 			else if (color == Colors.Green) RbGreen.IsChecked = true;
 			else if (color == Colors.Yellow) RbYellow.IsChecked = true;
+
+			TbServerIp.Text = (string) Properties.Settings.Default.ServerIp;
 			
 			Kernel.DrawLine(CMain);
 		}
@@ -67,8 +66,9 @@ namespace DotA.Properties.Pages
 
 		private void LSave_OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
 		{
-			Properties.Settings.Default["UserColor"] = UserColor;
-			Properties.Settings.Default["UserName"] = TbName.Text;
+			Properties.Settings.Default.UserColor = UserColor;
+			Properties.Settings.Default.UserName = TbName.Text;
+			Properties.Settings.Default.ServerIp = TbServerIp.Text;
 			Properties.Settings.Default.Save();
 			LExit_OnMouseLeftButtonUp(sender, e);
 		}

@@ -79,6 +79,24 @@ namespace DotA.Properties.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string GameParams_Back {
+            get {
+                return ResourceManager.GetString("GameParams_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string GameParams_Start {
+            get {
+                return ResourceManager.GetString("GameParams_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Game.
         /// </summary>
         public static string NewGame {
@@ -93,6 +111,15 @@ namespace DotA.Properties.Resources {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server IP.
+        /// </summary>
+        public static string ServerIp {
+            get {
+                return ResourceManager.GetString("ServerIp", resourceCulture);
             }
         }
         

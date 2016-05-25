@@ -11,7 +11,7 @@
 	<Grid>
 		<Border Background="AliceBlue">
 			<Canvas x:Name="CMain" Loaded="CMain_OnLoaded">
-				<Border x:Name="BForm"  Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Panel.ZIndex="10">
+				<Border x:Name="BForm"  Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Panel.ZIndex="10" Visibility="Collapsed">
 					<Grid>
 						<Label FontSize="20" Content="Name:" Margin="100,0,450,410"/>
 						<TextBox x:Name="TbName" FontSize="20" Margin="200,0,250,410" />
@@ -42,6 +42,14 @@
 						<TextBox x:Name="TbRoomName" Height="40" Width="400" VerticalAlignment="Top" Margin="0,100,0,0" />
 						<Button x:Name="BOk" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="125,150,0,0" FontSize="20" Click="BOk_OnClick">OK</Button>
 						<Button x:Name="BCancel" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="425,150,0,0" FontSize="20" Click="BCancel_OnClick">Cancel</Button>
+					</Grid>
+				</Border>
+				<Border x:Name="BConnectionAddres"  Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Panel.ZIndex="10">
+					<Grid>
+						<TextBox  x:Name="TbConnectionIp" FontSize="20" Margin="200,0,250,410"/>
+						<Label FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top">Enter connection IP</Label>
+						<Button x:Name="BOkConection" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="125,150,0,0" FontSize="20" Click="BOk_OnClickConection">OK</Button>
+						<Button x:Name="BCancelConection" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="425,150,0,0" FontSize="20" Click="BCancelConnection_OnClick">Cancel</Button>
 					</Grid>
 				</Border>
 			</Canvas>

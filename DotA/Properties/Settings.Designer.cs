@@ -94,5 +94,17 @@ namespace DotA.Properties {
                 this["UserForm"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.198.129")]
+        public string ServerIp {
+            get {
+                return ((string)(this["ServerIp"]));
+            }
+            set {
+                this["ServerIp"] = value;
+            }
+        }
     }
 }

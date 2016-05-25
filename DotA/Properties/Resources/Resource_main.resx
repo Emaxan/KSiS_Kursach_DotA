@@ -123,11 +123,20 @@
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="GameParams_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="GameParams_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="NewGame" xml:space="preserve">
     <value>New Game</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="ServerIp" xml:space="preserve">
+    <value>Server IP</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>

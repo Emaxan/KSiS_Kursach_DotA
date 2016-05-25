@@ -24,6 +24,7 @@ namespace DotA.Properties.Pages
 		private readonly GameSettings _gs = new GameSettings();
 		private Forms.Form _dot;
 		private byte[,] _matrix;
+		private bool[,] _boolMatrix;
 		public EventHandler<MyArgs> ExitClick;
 		public Main Main;
 		public User User = new User();
@@ -61,7 +62,7 @@ namespace DotA.Properties.Pages
 					CbForm.SelectedIndex = 2;
 					break;
 			}
-			ConnectAsync();
+			TbConnectionIp.Text = Properties.Settings.Default.ServerIp;
 		}
 
 		private void Game_MouseMove(object sender, MouseEventArgs e)
@@ -130,6 +131,7 @@ namespace DotA.Properties.Pages
 
 		public void AnalyzeMatrix()
 		{
+
 		}
 		
 		private async void Start_Click(object sender, RoutedEventArgs e)
@@ -200,11 +202,13 @@ namespace DotA.Properties.Pages
 			CMain.Children.Add(_dot.Obj);
 			DrawLine(CMain, _gs.Y, _gs.X);
 			_matrix = new byte[FieldH + 1, FieldW + 1];
+			_boolMatrix = new bool[FieldH + 1, FieldW + 1];
 			for (var i = 0; i < FieldH + 1; i++)
 			{
 				for (var j = 0; j < FieldW + 1; j++)
 				{
 					_matrix[i, j] = 255;
+					_boolMatrix[i, j] = false;
 				}
 			}
 		}
@@ -299,6 +303,19 @@ namespace DotA.Properties.Pages
 				LvRooms.Items.Add(new ListViewItem { Content = "No opened rooms" });
 		}
 
+		private void BOk_OnClickConection(object sender, RoutedEventArgs e)
+		{
+			ServerUri = $"http://{TbConnectionIp.Text}:13666/signalr";
+			ConnectAsync();
+			BConnectionAddres.Visibility = Visibility.Collapsed;
+			BForm.Visibility = Visibility.Visible;
+		}
+
+		private void BCancelConnection_OnClick(object sender, RoutedEventArgs e)
+		{
+			ExitClick?.Invoke(sender,new MyArgs() {IsUri = false,Root = Main});
+		}
+
 		#endregion
 
 		#region Connection To Server
@@ -308,7 +325,7 @@ namespace DotA.Properties.Pages
 		public HubConnection Connection { get; set; }
 
 
-		public const string ServerUri = "http://192.168.1.2:13666/signalr";// "http://192.168.198.129:13666/signalr";
+		public string ServerUri;//"192.168.198.129;192.168.1.2;
 
 		private async void ConnectAsync()
 		{

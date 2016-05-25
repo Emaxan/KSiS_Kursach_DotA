@@ -44,6 +44,22 @@
 						</LinearGradientBrush>
 					</Label.Foreground>
 				</Label>
+				<Label x:Name="LServerIp" Canvas.Top="130" Canvas.Left="70" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.ServerIp}">
+					<Label.Foreground>
+						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+							<LinearGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</LinearGradientBrush.RelativeTransform>
+							<GradientStop Color="Blue"/>
+							<GradientStop Color="Red" Offset="1"/>
+						</LinearGradientBrush>
+					</Label.Foreground>
+				</Label>
 				<Label x:Name="LUserColor" Canvas.Top="390" Canvas.Left="150" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.UserColor}">
 					<Label.Foreground>
 						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -93,6 +109,7 @@
 					</Label.Foreground>
 				</Label>
 				<TextBox x:Name="TbName" Canvas.Left="350" Canvas.Top="240" Height="60" Width="400" Panel.ZIndex="10" Background="Transparent" FontSize="32" FontFamily="Buxton Sketch" BorderThickness="2 2 2 2" BorderBrush="Black"/>
+				<TextBox x:Name="TbServerIp" Canvas.Left="350" Canvas.Top="150" Height="60" Width="400" Panel.ZIndex="10" Background="Transparent" FontSize="32" FontFamily="Buxton Sketch" BorderThickness="2 2 2 2" BorderBrush="Black"/>
 				<RadioButton x:Name="RbRed" Canvas.Top="388" Canvas.Left="390" Width="auto" Height="auto" FontFamily="Buxton Sketch" FontSize="20" RenderTransformOrigin="0.5,0.5" Foreground="Red" GroupName="Colors" Panel.ZIndex="10" Checked="RadioButton_Checked">
 					<RadioButton.RenderTransform>
 						<TransformGroup>
