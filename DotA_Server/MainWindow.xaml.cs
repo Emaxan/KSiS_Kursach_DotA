@@ -23,21 +23,22 @@ namespace DotA_Server
 	public partial class MainWindow
 	{
 		private const string ServerUri = "http://*:13666";
-		private readonly StreamWriter _logger;
+		private StreamWriter _logger;
+		private bool? _started = false;
 
 		public MainWindow()
 		{
 			InitializeComponent();
-			var logPath = Assembly.GetExecutingAssembly().Location;
-			logPath = logPath.Substring(0, logPath.LastIndexOf('\\'));
-			logPath += "\\log\\log.txt";
-			_logger = new StreamWriter(logPath, true);
 		}
 
 		public IDisposable SignalR { get; set; }
 
 		private void Start_OnClick(object sender, RoutedEventArgs e)
 		{
+			var logPath = Assembly.GetExecutingAssembly().Location;
+			logPath = logPath?.Substring(0, logPath.LastIndexOf('\\'));
+			logPath += $"\\log\\{DateTime.Today.ToShortDateString()}_{DateTime.Now.ToShortTimeString().Replace(':', '.')}.txt";
+			_logger = new StreamWriter(logPath, true);
 			BStop.IsEnabled = true;
 			WriteToConsole("Starting server...");
 			BStart.IsEnabled = false;
@@ -58,10 +59,12 @@ namespace DotA_Server
 					BStart.IsEnabled = true;
 					BStop.IsEnabled = false;
 				});
+				_started = null;
 				return;
 			}
 			Dispatcher.Invoke(() => BStop.IsEnabled = true);
 			WriteToConsole("Server started at " + ServerUri);
+			_started = true;
 		}
 
 		private void Stop_OnClick(object sender, RoutedEventArgs e)
@@ -70,6 +73,9 @@ namespace DotA_Server
 			BStart.IsEnabled = true;
 			SignalR.Dispose();
 			WriteToConsole("Server stoped...");
+			_logger.Flush();
+			_logger.Close();
+			_started = false;
 		}
 
 		public void WriteToConsole(string message)
@@ -93,10 +99,8 @@ namespace DotA_Server
 		private void MainWindow_OnClosing(object sender, CancelEventArgs e)
 		{
 			if (BStop.IsEnabled)
-			{
-				SignalR?.Dispose();
-				WriteToConsole("Server stoped...");
-			}
+				Stop_OnClick(sender, new RoutedEventArgs());
+			if (_started == false) return;
 			_logger.Flush();
 			_logger.Close();
 		}
@@ -313,9 +317,8 @@ namespace DotA_Server
 			}
 			Rooms[Clients.Caller.room].Matrix[y, x] = (byte)Clients.Caller.color; Application.Current.Dispatcher.Invoke(() =>
 				 ((MainWindow)Application.Current.MainWindow).WriteToConsole($"{Clients.Caller.name} set dot to position {x}:{y}"));
-			foreach (var user in UserRooms.Where(u => u.Value.Contains(Clients.Caller.room)))
+			foreach (var user in UserRooms.Where(u => u.Value.Contains(Clients.Caller.room)).Where(user => !user.Key.Equals(Context.ConnectionId)))
 			{
-				if(!user.Key.Equals(Context.ConnectionId))
 				Clients.Client(user.Key).SetDot(x, y, Clients.Caller.color, Clients.Caller.form);
 			}
 			var queue = (string)Rooms[Clients.Caller.room].Queue.Dequeue();

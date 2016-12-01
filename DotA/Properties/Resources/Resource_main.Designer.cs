@@ -70,6 +70,15 @@ namespace DotA.Properties.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string EnglishLanguage {
+            get {
+                return ResourceManager.GetString("EnglishLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string Exit {
@@ -106,6 +115,24 @@ namespace DotA.Properties.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *Reboot application to change language..
+        /// </summary>
+        public static string Note1 {
+            get {
+                return ResourceManager.GetString("Note1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Russian.
+        /// </summary>
+        public static string RussianLanguage {
+            get {
+                return ResourceManager.GetString("RussianLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -138,6 +165,15 @@ namespace DotA.Properties.Resources {
         public static string UserColor {
             get {
                 return ResourceManager.GetString("UserColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string UserLanguage {
+            get {
+                return ResourceManager.GetString("UserLanguage", resourceCulture);
             }
         }
         

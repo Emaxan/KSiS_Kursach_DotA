@@ -10,10 +10,9 @@ namespace DotA.Properties.Pages
 	/// </summary>
 	public partial class Settings
 	{
-		
-
 		public EventHandler<MyArgs> BackClick;
 		public Main Main;
+		public bool Lines = false;
 
 		public Color UserColor;
 
@@ -24,17 +23,22 @@ namespace DotA.Properties.Pages
 
 		private void CMain_OnLoaded(object sender, RoutedEventArgs e)
 		{
-			TbName.Text = (string) Properties.Settings.Default.UserName;
+			TbName.Text = Properties.Settings.Default.UserName;
 
-			var color = (Color) Properties.Settings.Default.UserColor;
+			var color = Properties.Settings.Default.UserColor;
 			if (color == Colors.Red) RbRed.IsChecked = true;
 			else if (color == Colors.Blue) RbBlue.IsChecked = true;
 			else if (color == Colors.Green) RbGreen.IsChecked = true;
 			else if (color == Colors.Yellow) RbYellow.IsChecked = true;
 
-			TbServerIp.Text = (string) Properties.Settings.Default.ServerIp;
-			
+			TbServerIp.Text = Properties.Settings.Default.ServerIp;
+			CbLanguage.SelectedIndex = Equals(Properties.Settings.Default.AppCulture, System.Globalization.CultureInfo.GetCultureInfo("ru-RU"))
+				? 0
+				: 1;
+
+			if (Lines) return;
 			Kernel.DrawLine(CMain);
+			Lines = true;
 		}
 
 		private void Label_MouseEnter(object sender, MouseEventArgs e)
@@ -69,6 +73,9 @@ namespace DotA.Properties.Pages
 			Properties.Settings.Default.UserColor = UserColor;
 			Properties.Settings.Default.UserName = TbName.Text;
 			Properties.Settings.Default.ServerIp = TbServerIp.Text;
+			Properties.Settings.Default.AppCulture = CbLanguage.SelectedIndex == 0
+				? System.Globalization.CultureInfo.GetCultureInfo("ru-RU")
+				: System.Globalization.CultureInfo.GetCultureInfo("en-EN");
 			Properties.Settings.Default.Save();
 			LExit_OnMouseLeftButtonUp(sender, e);
 		}

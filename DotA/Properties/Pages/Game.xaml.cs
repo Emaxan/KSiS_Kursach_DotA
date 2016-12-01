@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using DotA.Forms;
 using GeneralClasses;
 using Microsoft.AspNet.SignalR.Client;
@@ -126,14 +127,95 @@ namespace DotA.Properties.Pages
 			_matrix[yc, xc] = User.UserColorByte;
 			CMain.Children.Add(temp.Obj);
 			YourTurn = false;
-			//AnalyzeMatrix();
+			if (AnalyzeMatrix(xc, yc))
+			{
+				//TODO send signals
+			}
 		}
 
-		public void AnalyzeMatrix()
+		public bool AnalyzeMatrix(int x, int y)
 		{
+			var list = new Stack<Dot>();
+			var res = TryCloseField(x, y, ref list);
+			if (!res) return false;
+			if (CloseField(list))
+			{
+				//TODO DoSmth
 
+				return true;
+			}
+			return false;
 		}
-		
+
+		private bool TryCloseField(int x, int y, ref Stack<Dot> stack)
+		{
+			if (stack.Count > 0)
+			{
+				var last = stack.Peek();
+				if ((last.X == x) && (last.Y == y)) return false;
+			}
+			if (_boolMatrix[y, x]) return true;
+			_boolMatrix[y, x] = true;
+			stack.Push(new Dot(x, y, User.UserColor));
+			var res = false;
+
+			if ((y > 0) && (x > 0) && (_matrix[y - 1, x - 1] == User.UserColorByte))
+			{
+				res = TryCloseField(x - 1, y - 1, ref stack);
+			}
+			if (!res && (y > 0) && (_matrix[y - 1, x] == User.UserColorByte))
+			{
+				res = TryCloseField(x, y - 1, ref stack);
+			}
+			if (!res && (y > 0) && (x < FieldW) && (_matrix[y - 1, x + 1] == User.UserColorByte))
+			{
+				res = TryCloseField(x + 1, y - 1, ref stack);
+			}
+			if (!res && (x > 0) && (_matrix[y, x - 1] == User.UserColorByte))
+			{
+				res = TryCloseField(x - 1, y, ref stack);
+			}
+			if (!res && (x < FieldW) && (_matrix[y, x + 1] == User.UserColorByte))
+			{
+				res = TryCloseField(x + 1, y, ref stack);
+			}
+			if (!res && (x > 0) && (y < FieldH) && (_matrix[y + 1, x - 1] == User.UserColorByte))
+			{
+				res = TryCloseField(x - 1, y + 1, ref stack);
+			}
+			if (!res && (y < FieldH) && (_matrix[y + 1, x] == User.UserColorByte))
+			{
+				res = TryCloseField(x, y + 1, ref stack);
+			}
+			if (!res && (x < FieldW) && (y < FieldH) && (_matrix[y + 1, x + 1] == User.UserColorByte))
+			{
+				res = TryCloseField(x + 1, y + 1, ref stack);
+			}
+			return res;
+		}
+
+		private bool CloseField(IEnumerable<Dot> list)
+		{
+			var dots = list as Dot[] ?? list.ToArray();
+			if ((list == null) || (!dots.Any())) return false;
+			var col = new PointCollection();
+			foreach (var dot in dots)
+			{
+				col.Add(new Point((dot.X + OffsetX) * LineWidth, (dot.Y + OffsetY)* LineWidth));
+			}
+			var bg = dots[0].Color;
+			bg.A = 50;
+			var figure = new Polygon
+			{
+				Points = col,
+				Stroke = new SolidColorBrush(dots[0].Color),
+				StrokeThickness = 3,
+				Fill = new SolidColorBrush(bg)
+			};
+			CMain.Children.Add(figure);
+			return true;
+		}
+
 		private async void Start_Click(object sender, RoutedEventArgs e)
 		{
 			while (!Connected){}
@@ -316,6 +398,14 @@ namespace DotA.Properties.Pages
 			ExitClick?.Invoke(sender,new MyArgs() {IsUri = false,Root = Main});
 		}
 
+		private void ActivateButtons()
+		{
+			BStart.IsEnabled = true;
+			BAddRoom.IsEnabled = true;
+			BRescan.IsEnabled = true;
+			BDeleteRoom.IsEnabled = true;
+		}
+
 		#endregion
 
 		#region Connection To Server
@@ -325,7 +415,7 @@ namespace DotA.Properties.Pages
 		public HubConnection Connection { get; set; }
 
 
-		public string ServerUri;//"192.168.198.129;192.168.1.2;
+		public string ServerUri;
 
 		private async void ConnectAsync()
 		{
@@ -391,9 +481,13 @@ namespace DotA.Properties.Pages
 			catch (HttpRequestException)
 			{
 				MessageBox.Show("Unable to connect to server.");
+				BConnectionAddres.Visibility = Visibility.Visible;
+				BForm.Visibility = Visibility.Collapsed;
 				return;
 			}
-			
+
+			ActivateButtons();
+
 			var rooms = await HubProxy.Invoke<IEnumerable<ChatRoom>>("GetRooms");
 			var source = rooms as IList<ChatRoom> ?? rooms.ToList();
 			if (source.Count != 0)
@@ -401,8 +495,26 @@ namespace DotA.Properties.Pages
 			else
 				LvRooms.Items.Add(new ListViewItem {Content = "No opened rooms"});
 		}
-
 		#endregion
+	}
+
+	public class Dot
+	{
+		public Dot(int x, int y, Color color)
+		{
+			X = x;
+			Y = y;
+			Color = color;
+			if (color == Colors.Yellow) ColorInt = 3;
+			else if (color == Colors.Blue) ColorInt = 2;
+			else if (color == Colors.Green) ColorInt = 1;
+			else if (color == Colors.Red) ColorInt = 0;
+		}
+
+		public int X;
+		public int Y;
+		public Color Color;
+		public int ColorInt;
 	}
 
 	public class User

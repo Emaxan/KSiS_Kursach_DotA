@@ -28,12 +28,12 @@
 							<ComboBoxItem Content="Star"/>
 							<ComboBoxItem Content="Cross"/>
 						</ComboBox>
-						<Button FontSize="20" Click="Start_Click" Content="Start" Margin="450,0,0,210"/>
+						<Button x:Name="BStart" FontSize="20" Click="Start_Click" Content="Start" Margin="450,0,0,210" IsEnabled="False"/>
 						<Label FontSize="20" Content="Rooms:" Margin="0,270,550,140"/>
 						<ListView x:Name="LvRooms" FontSize="20" Margin="0,300,120,0"/>
-						<Button FontSize="20" Click="AddRoom_Click" Content="Add room" Margin="530,300,0,110"/>
-						<Button FontSize="20" Click="DeleteRoom_Click" Content="Delete room" Margin="530,340,0,70"/>
-						<Button FontSize="20" Click="Rescan_Click " Content="Rescan..." Margin="530,380,0,30"/>
+						<Button x:Name="BAddRoom" FontSize="20" Click="AddRoom_Click" Content="Add room" Margin="530,300,0,110" IsEnabled="False"/>
+						<Button x:Name="BDeleteRoom" FontSize="20" Click="DeleteRoom_Click" Content="Delete room" Margin="530,340,0,70" IsEnabled="False"/>
+						<Button x:Name="BRescan" FontSize="20" Click="Rescan_Click " Content="Rescan..." Margin="530,380,0,30" IsEnabled="False"/>
 					</Grid>
 				</Border>
 				<Border x:Name="BRoomName" Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Visibility="Collapsed" Panel.ZIndex="10">

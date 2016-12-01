@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace DotA.Properties.Pages {
 	/// <summary>
@@ -16,12 +12,15 @@ namespace DotA.Properties.Pages {
 		public EventHandler<MyArgs> SettingsClick;
 		public GameParams GameParams;
 		public Settings Settings;
+		private bool _lines = false;
 
 		public Main( ) { InitializeComponent( ); }
 
 		private void CMain_OnLoaded(object sender, RoutedEventArgs e)
 		{
+			if (_lines) return;
 			Kernel.DrawLine(CMain);
+			_lines = true;
 		}
 
 		private void Label_MouseEnter(object sender, MouseEventArgs e)

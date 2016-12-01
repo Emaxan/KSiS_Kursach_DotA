@@ -13,6 +13,7 @@ namespace DotA.Properties.Pages
 		public EventHandler<MyArgs> StartClick;
 		public Game Game;
 		public Main Main;
+		private bool _lines = false;
 
 		public GameParams()
 		{
@@ -21,7 +22,9 @@ namespace DotA.Properties.Pages
 
 		private void CMain_OnLoaded(object sender, RoutedEventArgs e)
 		{
+			if(_lines) return;
 			Kernel.DrawLine(CMain);
+			_lines = true;	
 		}
 
 		private void Label_MouseLeave(object sender, MouseEventArgs e)

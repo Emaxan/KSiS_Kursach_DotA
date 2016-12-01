@@ -1,0 +1,14 @@
+Z:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\bin\Debug\GeneralClasses.dll
+Z:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\bin\Debug\GeneralClasses.pdb
+Z:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\obj\Debug\GeneralClasses.csprojResolveAssemblyReference.cache
+Z:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\obj\Debug\GeneralClasses.dll
+Z:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\obj\Debug\GeneralClasses.pdb
+\\Max-win10-x64\e\Programs\VS\kurs_proect_3\DotA\GeneralClasses\bin\Debug\GeneralClasses.dll
+\\Max-win10-x64\e\Programs\VS\kurs_proect_3\DotA\GeneralClasses\bin\Debug\GeneralClasses.pdb
+\\Max-win10-x64\e\Programs\VS\kurs_proect_3\DotA\GeneralClasses\obj\Debug\GeneralClasses.dll
+\\Max-win10-x64\e\Programs\VS\kurs_proect_3\DotA\GeneralClasses\obj\Debug\GeneralClasses.pdb
+D:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\bin\Debug\GeneralClasses.dll
+D:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\bin\Debug\GeneralClasses.pdb
+D:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\obj\Debug\GeneralClasses.csprojResolveAssemblyReference.cache
+D:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\obj\Debug\GeneralClasses.dll
+D:\Programs\VS\kurs_proect_3\DotA\GeneralClasses\obj\Debug\GeneralClasses.pdb
