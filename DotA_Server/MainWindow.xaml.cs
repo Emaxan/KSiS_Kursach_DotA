@@ -14,7 +14,6 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Hosting;
 using Owin;
-using GeneralClasses;
 
 namespace DotA_Server
 {
@@ -142,14 +141,14 @@ namespace DotA_Server
 		{
 			Clients.All.addMessage(name, message);
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow) Application.Current.MainWindow).WriteToConsole($"Server send: {name}:{message}"));
+				((MainWindow) Application.Current.MainWindow).WriteToConsole($"{Clients.Caller.room}Server send: {name}:{message}"));
 		}
 
 		public void SendString(string str)
 		{
 			Clients.All.addString(str);
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow) Application.Current.MainWindow).WriteToConsole($"Server send: {str}"));
+				((MainWindow) Application.Current.MainWindow).WriteToConsole($"{Clients.Caller.room}: Server send: {str}"));
 		}
 
 		public bool SetRoom(string key)
@@ -319,7 +318,7 @@ namespace DotA_Server
 				return false;
 			}
 			Rooms[Clients.Caller.room].Matrix[y, x] = (byte)Clients.Caller.color; Application.Current.Dispatcher.Invoke(() =>
-				 ((MainWindow)Application.Current.MainWindow).WriteToConsole($"{Clients.Caller.name} set dot to position {x}:{y}"));
+				 ((MainWindow)Application.Current.MainWindow).WriteToConsole($"{Clients.Caller.room}: {Clients.Caller.name} set dot to position {x}:{y}"));
 			foreach (var user in UserRooms.Where(u => u.Value.Contains(Clients.Caller.room)).Where(user => !user.Key.Equals(Context.ConnectionId)))
 			{
 				Clients.Client(user.Key).SetDot(x, y, Clients.Caller.color, Clients.Caller.form);

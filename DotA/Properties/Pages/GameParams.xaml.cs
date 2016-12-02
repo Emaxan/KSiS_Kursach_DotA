@@ -48,11 +48,11 @@ namespace DotA.Properties.Pages
 
 		private void BackClickHandler(object sender, MouseButtonEventArgs e)
 		{
-			StartClick?.Invoke(sender, new MyArgs
-			{
-				IsUri = false,
-				Root = Main
-			});
+			ExitClick?.Invoke(sender, new MyArgs
+												{
+													IsUri = false,
+													Root = Main
+												});
 		}
 	}
 }

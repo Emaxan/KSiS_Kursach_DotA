@@ -117,14 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddRoom" xml:space="preserve">
+    <value>Add room</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Circle" xml:space="preserve">
+    <value>Circle</value>
+  </data>
+  <data name="DeleteRoom" xml:space="preserve">
+    <value>Delete room</value>
   </data>
   <data name="EnglishLanguage" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="EnterConnectionIP" xml:space="preserve">
+    <value>Enter connection IP</value>
+  </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="Form" xml:space="preserve">
+    <value>Form</value>
   </data>
   <data name="GameParams_Back" xml:space="preserve">
     <value>Back</value>
@@ -132,11 +153,44 @@
   <data name="GameParams_Start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="Game_Color" xml:space="preserve">
+    <value>Color:</value>
+  </data>
+  <data name="Game_Form" xml:space="preserve">
+    <value>Form:</value>
+  </data>
+  <data name="Game_Name" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="Game_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
   <data name="NewGame" xml:space="preserve">
     <value>New Game</value>
   </data>
+  <data name="NoOpenedRooms" xml:space="preserve">
+    <value>No opened rooms</value>
+  </data>
   <data name="Note1" xml:space="preserve">
     <value>*Reboot application to change language.</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="Rescan" xml:space="preserve">
+    <value>Rescan</value>
+  </data>
+  <data name="RoomName" xml:space="preserve">
+    <value>Room Name</value>
+  </data>
+  <data name="Rooms" xml:space="preserve">
+    <value>Rooms:</value>
   </data>
   <data name="RussianLanguage" xml:space="preserve">
     <value>Russian</value>
@@ -150,6 +204,12 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Star" xml:space="preserve">
+    <value>Star</value>
+  </data>
+  <data name="Triangle" xml:space="preserve">
+    <value>Triangle</value>
+  </data>
   <data name="UserColor" xml:space="preserve">
     <value>Color</value>
   </data>
@@ -158,5 +218,8 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="Yellow" xml:space="preserve">
+    <value>Yellow</value>
   </data>
 </root>

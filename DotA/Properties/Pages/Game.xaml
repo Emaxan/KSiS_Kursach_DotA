@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DotA.Properties.Pages"
+      xmlns:res="clr-namespace:DotA.Properties.Resources"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="850"
       Title="Game" MouseMove="Game_MouseMove" MouseLeftButtonUp="Game_OnMouseLeftButtonUp">
@@ -13,43 +14,43 @@
 			<Canvas x:Name="CMain" Loaded="CMain_OnLoaded">
 				<Border x:Name="BForm"  Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Panel.ZIndex="10" Visibility="Collapsed">
 					<Grid>
-						<Label FontSize="20" Content="Name:" Margin="100,0,450,410"/>
+						<Label FontSize="20" Content="{x:Static res:Resource_main.Game_Name}" Margin="100,0,450,410"/>
 						<TextBox x:Name="TbName" FontSize="20" Margin="200,0,250,410" />
-						<Label FontSize="20" Content="Color:" Margin="100,100,450,310"/>
+						<Label FontSize="20" Content="{x:Static res:Resource_main.Game_Color}" Margin="100,100,450,310"/>
 						<ComboBox x:Name="CbColor" FontSize="20" SelectedItem="1" Margin="200,100,250,310">
-							<ComboBoxItem Content="Red"/>
-							<ComboBoxItem Content="Green"/>
-							<ComboBoxItem Content="Blue"/>
-							<ComboBoxItem Content="Yellow"/>
+							<ComboBoxItem Content="{x:Static res:Resource_main.Red}"/>
+							<ComboBoxItem Content="{x:Static res:Resource_main.Green}"/>
+							<ComboBoxItem Content="{x:Static res:Resource_main.Blue}"/>
+							<ComboBoxItem Content="{x:Static res:Resource_main.Yellow}"/>
 						</ComboBox>
-						<Label FontSize="20" Content="Form:" Margin="100,200,450,210"/>
+						<Label FontSize="20" Content="{x:Static res:Resource_main.Game_Form}" Margin="100,200,450,210"/>
 						<ComboBox x:Name="CbForm" FontSize="20" SelectedItem="1" Margin="200,200,250,210">
-							<ComboBoxItem Content="Circle"/>
-							<ComboBoxItem Content="Star"/>
-							<ComboBoxItem Content="Cross"/>
+							<ComboBoxItem Content="{x:Static res:Resource_main.Circle}"/>
+							<ComboBoxItem Content="{x:Static res:Resource_main.Star}"/>
+							<ComboBoxItem Content="{x:Static res:Resource_main.Triangle}"/>
 						</ComboBox>
-						<Button x:Name="BStart" FontSize="20" Click="Start_Click" Content="Start" Margin="450,0,0,210" IsEnabled="False"/>
-						<Label FontSize="20" Content="Rooms:" Margin="0,270,550,140"/>
+						<Button x:Name="BStart" FontSize="20" Click="Start_Click" Content="{x:Static res:Resource_main.Game_Start}" Margin="450,0,0,210" IsEnabled="False"/>
+						<Label FontSize="20" Content="{x:Static res:Resource_main.Rooms}" Margin="0,270,550,140"/>
 						<ListView x:Name="LvRooms" FontSize="20" Margin="0,300,120,0"/>
-						<Button x:Name="BAddRoom" FontSize="20" Click="AddRoom_Click" Content="Add room" Margin="530,300,0,110" IsEnabled="False"/>
-						<Button x:Name="BDeleteRoom" FontSize="20" Click="DeleteRoom_Click" Content="Delete room" Margin="530,340,0,70" IsEnabled="False"/>
-						<Button x:Name="BRescan" FontSize="20" Click="Rescan_Click " Content="Rescan..." Margin="530,380,0,30" IsEnabled="False"/>
+						<Button x:Name="BAddRoom" FontSize="20" Click="AddRoom_Click" Content="{x:Static res:Resource_main.AddRoom}" Margin="530,300,0,110" IsEnabled="False"/>
+						<Button x:Name="BDeleteRoom" FontSize="20" Click="DeleteRoom_Click" Content="{x:Static res:Resource_main.DeleteRoom}" Margin="530,340,0,70" IsEnabled="False"/>
+						<Button x:Name="BRescan" FontSize="20" Click="Rescan_Click " Content="{x:Static res:Resource_main.Rescan}" Margin="530,380,0,30" IsEnabled="False"/>
 					</Grid>
 				</Border>
 				<Border x:Name="BRoomName" Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Visibility="Collapsed" Panel.ZIndex="10">
 					<Grid>
-						<Label FontSize="20" Height="40" Width="400" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,100,0,0">Room Name</Label>
+						<Label FontSize="20" Height="40" Width="400" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,100,0,0" Content="{x:Static res:Resource_main.RoomName}"/>
 						<TextBox x:Name="TbRoomName" Height="40" Width="400" VerticalAlignment="Top" Margin="0,100,0,0" />
-						<Button x:Name="BOk" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="125,150,0,0" FontSize="20" Click="BOk_OnClick">OK</Button>
-						<Button x:Name="BCancel" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="425,150,0,0" FontSize="20" Click="BCancel_OnClick">Cancel</Button>
+						<Button x:Name="BOk" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="125,150,0,0" FontSize="20" Click="BOk_OnClick" Content="{x:Static res:Resource_main.OK}"/>
+						<Button x:Name="BCancel" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="425,150,0,0" FontSize="20" Click="BCancel_OnClick" Content="{x:Static res:Resource_main.Cancel}"/>
 					</Grid>
 				</Border>
 				<Border x:Name="BConnectionAddres"  Height="450" Canvas.Left="100" Canvas.Top="100" Width="650" Panel.ZIndex="10">
 					<Grid>
 						<TextBox  x:Name="TbConnectionIp" FontSize="20" Margin="200,0,250,410"/>
-						<Label FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top">Enter connection IP</Label>
-						<Button x:Name="BOkConection" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="125,150,0,0" FontSize="20" Click="BOk_OnClickConection">OK</Button>
-						<Button x:Name="BCancelConection" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="425,150,0,0" FontSize="20" Click="BCancelConnection_OnClick">Cancel</Button>
+						<Label FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Content="{x:Static res:Resource_main.EnterConnectionIP}" Margin="-26,-4,0,0"></Label>
+						<Button x:Name="BOkConection" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="125,150,0,0" FontSize="20" Click="BOk_OnClickConection" Content="{x:Static res:Resource_main.OK}"></Button>
+						<Button x:Name="BCancelConection" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="425,150,0,0" FontSize="20" Click="BCancelConnection_OnClick" Content="{x:Static res:Resource_main.Cancel}"></Button>
 					</Grid>
 				</Border>
 			</Canvas>

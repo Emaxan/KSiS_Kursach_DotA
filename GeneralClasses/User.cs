@@ -27,6 +27,6 @@ namespace GeneralClasses
 	{
 		Circle = 0,
 		Star = 1,
-		Cross = 2
+		Triangle = 2
 	}
 }

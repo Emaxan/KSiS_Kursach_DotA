@@ -28,38 +28,6 @@
 						</LinearGradientBrush>
 					</Label.Foreground>
 				</Label>
-				<Label x:Name="LUserName" Canvas.Top="210" Canvas.Left="70" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.UserName}">
-					<Label.Foreground>
-						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-							<LinearGradientBrush.RelativeTransform>
-								<TransformGroup>
-									<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
-									<SkewTransform CenterY="0.5" CenterX="0.5"/>
-									<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
-									<TranslateTransform/>
-								</TransformGroup>
-							</LinearGradientBrush.RelativeTransform>
-							<GradientStop Color="Blue"/>
-							<GradientStop Color="Red" Offset="1"/>
-						</LinearGradientBrush>
-					</Label.Foreground>
-				</Label>
-				<Label x:Name="LLanguage" Canvas.Top="285" Canvas.Left="70" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.UserLanguage}">
-					<Label.Foreground>
-						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-							<LinearGradientBrush.RelativeTransform>
-								<TransformGroup>
-									<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
-									<SkewTransform CenterY="0.5" CenterX="0.5"/>
-									<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
-									<TranslateTransform/>
-								</TransformGroup>
-							</LinearGradientBrush.RelativeTransform>
-							<GradientStop Color="Blue"/>
-							<GradientStop Color="Red" Offset="1"/>
-						</LinearGradientBrush>
-					</Label.Foreground>
-				</Label>
 				<Label x:Name="LServerIp" Canvas.Top="130" Canvas.Left="70" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.ServerIp}">
 					<Label.Foreground>
 						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -76,7 +44,8 @@
 						</LinearGradientBrush>
 					</Label.Foreground>
 				</Label>
-				<Label x:Name="LUserColor" Canvas.Top="390" Canvas.Left="150" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.UserColor}">
+				<TextBox x:Name="TbServerIp" Canvas.Left="350" Canvas.Top="150" Height="60" Width="400" Panel.ZIndex="10" Background="Transparent" FontSize="32" FontFamily="Buxton Sketch" BorderThickness="2 2 2 2" BorderBrush="Black"/>
+				<Label x:Name="LUserName" Canvas.Top="210" Canvas.Left="70" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.UserName}">
 					<Label.Foreground>
 						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
 							<LinearGradientBrush.RelativeTransform>
@@ -92,6 +61,129 @@
 						</LinearGradientBrush>
 					</Label.Foreground>
 				</Label>
+				<TextBox x:Name="TbName" Canvas.Left="350" Canvas.Top="220" Height="60" Width="400" Panel.ZIndex="10" Background="Transparent" FontSize="32" FontFamily="Buxton Sketch" BorderThickness="2 2 2 2" BorderBrush="Black"/>
+				<Label x:Name="LLanguage" Canvas.Top="285" Canvas.Left="70" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.UserLanguage}">
+					<Label.Foreground>
+						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+							<LinearGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</LinearGradientBrush.RelativeTransform>
+							<GradientStop Color="Blue"/>
+							<GradientStop Color="Red" Offset="1"/>
+						</LinearGradientBrush>
+					</Label.Foreground>
+				</Label>
+				<ComboBox x:Name="CbLanguage" Canvas.Left="350" Canvas.Top="295" Height="60" Width="400" Panel.ZIndex="10" Background="Transparent" FontSize="32" FontFamily="Buxton Sketch" BorderThickness="2 2 2 2" BorderBrush="Black">
+					<ComboBoxItem x:Name="CbiRus" Content="{x:Static res:Resource_main.RussianLanguage}"/>
+					<ComboBoxItem x:Name="CbiEng" Content="{x:Static res:Resource_main.EnglishLanguage}"/>
+				</ComboBox>
+				<Label x:Name="LUserColor" Canvas.Top="357" Canvas.Left="70" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.UserColor}">
+					<Label.Foreground>
+						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+							<LinearGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</LinearGradientBrush.RelativeTransform>
+							<GradientStop Color="Blue"/>
+							<GradientStop Color="Red" Offset="1"/>
+						</LinearGradientBrush>
+					</Label.Foreground>
+				</Label>
+				<RadioButton x:Name="RbRed" Canvas.Top="372" Canvas.Left="342" Width="74" Height="auto" FontFamily="Buxton Sketch" FontSize="14" RenderTransformOrigin="0.5,0.5" Foreground="Red" GroupName="Colors" Panel.ZIndex="10" Content="{x:Static res:Resource_main.Red}" Checked="RadioButton_Checked">
+					<RadioButton.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</RadioButton.RenderTransform>
+				</RadioButton>
+				<RadioButton x:Name="RbGreen" Canvas.Top="414" Canvas.Left="342" Width="74" Height="auto" FontFamily="Buxton Sketch" FontSize="14" RenderTransformOrigin="0.5,0.5" Foreground="Green" GroupName="Colors" Panel.ZIndex="10" Content="{x:Static res:Resource_main.Green}" Checked="RadioButton_Checked">
+					<RadioButton.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</RadioButton.RenderTransform>
+				</RadioButton>
+				<RadioButton x:Name="RbYellow" Canvas.Top="414" Canvas.Left="531" Width="74" Height="auto" FontFamily="Buxton Sketch" FontSize="14" RenderTransformOrigin="0.5,0.5" Foreground="Yellow" GroupName="Colors" Panel.ZIndex="10" Content="{x:Static res:Resource_main.Yellow}" Checked="RadioButton_Checked">
+					<RadioButton.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</RadioButton.RenderTransform>
+				</RadioButton>
+				<RadioButton x:Name="RbBlue" Canvas.Top="372" Canvas.Left="531" Width="74" Height="auto" FontFamily="Buxton Sketch" FontSize="14" RenderTransformOrigin="0.5,0.5" Foreground="Blue" GroupName="Colors" Panel.ZIndex="10" Content="{x:Static res:Resource_main.Blue}" Checked="RadioButton_Checked">
+					<RadioButton.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</RadioButton.RenderTransform>
+				</RadioButton>
+				<Label x:Name="LUserForm" Canvas.Top="422" Canvas.Left="70" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.Form}">
+					<Label.Foreground>
+						<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+							<LinearGradientBrush.RelativeTransform>
+								<TransformGroup>
+									<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="2.3"/>
+									<SkewTransform CenterY="0.5" CenterX="0.5"/>
+									<RotateTransform CenterY="0.5" CenterX="0.5" Angle="90"/>
+									<TranslateTransform/>
+								</TransformGroup>
+							</LinearGradientBrush.RelativeTransform>
+							<GradientStop Color="Blue"/>
+							<GradientStop Color="Red" Offset="1"/>
+						</LinearGradientBrush>
+					</Label.Foreground>
+				</Label>
+				<RadioButton x:Name="RbCircle" Canvas.Top="456" Canvas.Left="313" Width="34" Height="auto" FontFamily="Buxton Sketch" FontSize="14" RenderTransformOrigin="0.5,0.5" GroupName="Form" Panel.ZIndex="10" Checked="RbForm_Checked">
+					<RadioButton.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</RadioButton.RenderTransform>
+				</RadioButton>
+				<RadioButton x:Name="RbStar" Canvas.Top="456" Canvas.Left="502" Width="34" Height="auto" FontFamily="Buxton Sketch" FontSize="14" RenderTransformOrigin="0.5,0.5" GroupName="Form" Panel.ZIndex="10" Checked="RbForm_Checked">
+					<RadioButton.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</RadioButton.RenderTransform>
+				</RadioButton>
+				<RadioButton x:Name="RbTriangle" Canvas.Top="456" Canvas.Left="696" Width="34" Height="auto" FontFamily="Buxton Sketch" FontSize="14" RenderTransformOrigin="0.5,0.5" GroupName="Form" Panel.ZIndex="10" Checked="RbForm_Checked">
+					<RadioButton.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
+							<SkewTransform/>
+							<RotateTransform/>
+							<TranslateTransform/>
+						</TransformGroup>
+					</RadioButton.RenderTransform>
+				</RadioButton>
 				<Label Canvas.Top="496" Canvas.Left="86" FontSize="15" Content="{x:Static res:Resource_main.Note1}"></Label>
 				<Label x:Name="LBack" Canvas.Top="507" Canvas.Left="641" FontSize="50" Panel.ZIndex="10" Content="{x:Static res:Resource_main.Back}" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" MouseLeftButtonUp="LExit_OnMouseLeftButtonUp">
 					<Label.Foreground>
@@ -125,52 +217,6 @@
 						</LinearGradientBrush>
 					</Label.Foreground>
 				</Label>
-				<TextBox x:Name="TbName" Canvas.Left="350" Canvas.Top="220" Height="60" Width="400" Panel.ZIndex="10" Background="Transparent" FontSize="32" FontFamily="Buxton Sketch" BorderThickness="2 2 2 2" BorderBrush="Black"/>
-				<TextBox x:Name="TbServerIp" Canvas.Left="350" Canvas.Top="150" Height="60" Width="400" Panel.ZIndex="10" Background="Transparent" FontSize="32" FontFamily="Buxton Sketch" BorderThickness="2 2 2 2" BorderBrush="Black"/>
-				<RadioButton x:Name="RbRed" Canvas.Top="388" Canvas.Left="390" Width="auto" Height="auto" FontFamily="Buxton Sketch" FontSize="20" RenderTransformOrigin="0.5,0.5" Foreground="Red" GroupName="Colors" Panel.ZIndex="10" Checked="RadioButton_Checked">
-					<RadioButton.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
-							<SkewTransform/>
-							<RotateTransform/>
-							<TranslateTransform/>
-						</TransformGroup>
-					</RadioButton.RenderTransform> Red
-				</RadioButton>
-				<RadioButton x:Name="RbGreen" Canvas.Top="388" Canvas.Left="654" Width="auto" Height="auto" FontFamily="Buxton Sketch" FontSize="20" RenderTransformOrigin="0.5,0.5" Foreground="Green" GroupName="Colors" Panel.ZIndex="10" Content="Green" Checked="RadioButton_Checked">
-					<RadioButton.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
-							<SkewTransform/>
-							<RotateTransform/>
-							<TranslateTransform/>
-						</TransformGroup>
-					</RadioButton.RenderTransform>
-				</RadioButton>
-				<RadioButton x:Name="RbYellow" Canvas.Top="450" Canvas.Left="654" Width="auto" Height="auto" FontFamily="Buxton Sketch" FontSize="20" RenderTransformOrigin="0.5,0.5" Foreground="Yellow" GroupName="Colors" Panel.ZIndex="10" Content="Yellow" Checked="RadioButton_Checked">
-					<RadioButton.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
-							<SkewTransform/>
-							<RotateTransform/>
-							<TranslateTransform/>
-						</TransformGroup>
-					</RadioButton.RenderTransform>
-				</RadioButton>
-				<RadioButton x:Name="RbBlue" Canvas.Top="450" Canvas.Left="390" Width="auto" Height="auto" FontFamily="Buxton Sketch" FontSize="20" RenderTransformOrigin="0.5,0.5" Foreground="Blue" GroupName="Colors" Panel.ZIndex="10" Content="Blue" Checked="RadioButton_Checked">
-					<RadioButton.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform ScaleX="2.5" ScaleY="2.5"/>
-							<SkewTransform/>
-							<RotateTransform/>
-							<TranslateTransform/>
-						</TransformGroup>
-					</RadioButton.RenderTransform>
-				</RadioButton>
-				<ComboBox x:Name="CbLanguage" Canvas.Left="350" Canvas.Top="295" Height="60" Width="400" Panel.ZIndex="10" Background="Transparent" FontSize="32" FontFamily="Buxton Sketch" BorderThickness="2 2 2 2" BorderBrush="Black">
-					<ComboBoxItem x:Name="CbiRus" Content="{x:Static res:Resource_main.RussianLanguage}"/>
-					<ComboBoxItem x:Name="CbiEng" Content="{x:Static res:Resource_main.EnglishLanguage}"/>
-				</ComboBox>
 			</Canvas>
 		</Border>
 	</Grid>

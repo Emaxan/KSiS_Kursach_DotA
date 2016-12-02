@@ -61,11 +61,56 @@ namespace DotA.Properties.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add room.
+        /// </summary>
+        public static string AddRoom {
+            get {
+                return ResourceManager.GetString("AddRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string Back {
             get {
                 return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string Blue {
+            get {
+                return ResourceManager.GetString("Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Circle.
+        /// </summary>
+        public static string Circle {
+            get {
+                return ResourceManager.GetString("Circle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete room.
+        /// </summary>
+        public static string DeleteRoom {
+            get {
+                return ResourceManager.GetString("DeleteRoom", resourceCulture);
             }
         }
         
@@ -79,11 +124,65 @@ namespace DotA.Properties.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter connection IP.
+        /// </summary>
+        public static string EnterConnectionIP {
+            get {
+                return ResourceManager.GetString("EnterConnectionIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string Exit {
             get {
                 return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form.
+        /// </summary>
+        public static string Form {
+            get {
+                return ResourceManager.GetString("Form", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color:.
+        /// </summary>
+        public static string Game_Color {
+            get {
+                return ResourceManager.GetString("Game_Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Form:.
+        /// </summary>
+        public static string Game_Form {
+            get {
+                return ResourceManager.GetString("Game_Form", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string Game_Name {
+            get {
+                return ResourceManager.GetString("Game_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string Game_Start {
+            get {
+                return ResourceManager.GetString("Game_Start", resourceCulture);
             }
         }
         
@@ -106,6 +205,15 @@ namespace DotA.Properties.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string Green {
+            get {
+                return ResourceManager.GetString("Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Game.
         /// </summary>
         public static string NewGame {
@@ -115,11 +223,65 @@ namespace DotA.Properties.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No opened rooms.
+        /// </summary>
+        public static string NoOpenedRooms {
+            get {
+                return ResourceManager.GetString("NoOpenedRooms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *Reboot application to change language..
         /// </summary>
         public static string Note1 {
             get {
                 return ResourceManager.GetString("Note1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string Red {
+            get {
+                return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rescan.
+        /// </summary>
+        public static string Rescan {
+            get {
+                return ResourceManager.GetString("Rescan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Room Name.
+        /// </summary>
+        public static string RoomName {
+            get {
+                return ResourceManager.GetString("RoomName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rooms:.
+        /// </summary>
+        public static string Rooms {
+            get {
+                return ResourceManager.GetString("Rooms", resourceCulture);
             }
         }
         
@@ -160,6 +322,24 @@ namespace DotA.Properties.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Star.
+        /// </summary>
+        public static string Star {
+            get {
+                return ResourceManager.GetString("Star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Triangle.
+        /// </summary>
+        public static string Triangle {
+            get {
+                return ResourceManager.GetString("Triangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string UserColor {
@@ -183,6 +363,15 @@ namespace DotA.Properties.Resources {
         public static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow.
+        /// </summary>
+        public static string Yellow {
+            get {
+                return ResourceManager.GetString("Yellow", resourceCulture);
             }
         }
     }

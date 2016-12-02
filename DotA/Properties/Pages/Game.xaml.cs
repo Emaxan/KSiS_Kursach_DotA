@@ -60,9 +60,12 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 					_dot = new Star(User.UserColor);
 					CbForm.SelectedIndex = 1;
 					break;
-				case Form.Cross:
+				case Form.Triangle:
 					_dot = new Cross(User.UserColor);
 					CbForm.SelectedIndex = 2;
+					break;
+				default:
+					//Todo Error!!!
 					break;
 			}
 			TbConnectionIp.Text = Properties.Settings.Default.ServerIp;
@@ -114,7 +117,7 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 				case Form.Star:
 					temp = new Star(User.UserColor);
 					break;
-				case Form.Cross:
+				case Form.Triangle:
 					temp = new Cross(User.UserColor);
 					break;
 				default:
@@ -241,6 +244,9 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 					User.UserColor = Colors.Yellow;
 					_dot.Color = Colors.Yellow;
 					break;
+				default:
+					//Todo Error!!!
+					break;
 			}
 			User.UserForm = (Form) CbForm.SelectedIndex;
 			if (!RoomSeted)
@@ -319,6 +325,9 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 					case 3:
 						User.UserColor = Colors.Yellow;
 						break;
+					default:
+						//Todo Error!!!
+						break;
 				}
 				User.UserForm = (Form) CbForm.SelectedIndex;
 				await HubProxy.Invoke("join", User);
@@ -363,7 +372,7 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 			if (source.Count != 0)
 				LvRooms.ItemsSource = source;
 			else
-				LvRooms.Items.Add(new ListViewItem { Content = "No opened rooms" });
+				LvRooms.Items.Add(new ListViewItem { Content = Properties.Resources.Resource_main.NoOpenedRooms });
 		}
 
 		private void BOk_OnClickConection(object sender, RoutedEventArgs e)
@@ -474,7 +483,7 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 			if (source.Count != 0)
 				LvRooms.ItemsSource = source;
 			else
-				LvRooms.Items.Add(new ListViewItem {Content = "No opened rooms"});
+				LvRooms.Items.Add(new ListViewItem {Content = Properties.Resources.Resource_main.NoOpenedRooms });
 		}
 		#endregion
 	}

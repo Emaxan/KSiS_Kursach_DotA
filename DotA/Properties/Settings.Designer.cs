@@ -86,9 +86,9 @@ namespace DotA.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int UserForm {
+        public byte UserForm {
             get {
-                return ((int)(this["UserForm"]));
+                return ((byte)(this["UserForm"]));
             }
             set {
                 this["UserForm"] = value;

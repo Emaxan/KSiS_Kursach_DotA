@@ -1,0 +1,12 @@
+02.12.2016 15:54:24: Starting server...
+02.12.2016 15:54:24: Server started at http://*:13666
+02.12.2016 15:54:49: Client connected: f1018ce8-72c6-4fb7-919c-5b93cd4521a5
+02.12.2016 15:54:49: Server send list of rooms.
+02.12.2016 15:55:06: Room 1 added.
+02.12.2016 15:55:06: User Max has id f1018ce8-72c6-4fb7-919c-5b93cd4521a5
+02.12.2016 15:55:06: Server send list of users in the 1 room.
+02.12.2016 15:55:06: User Max insert to the 1 room.
+02.12.2016 15:55:06: Field of 1 room seted to 39:32 
+02.12.2016 15:55:06: Server send list of rooms.
+02.12.2016 15:55:44: Client disconnected: f1018ce8-72c6-4fb7-919c-5b93cd4521a5
+02.12.2016 16:58:05: Server stoped...
