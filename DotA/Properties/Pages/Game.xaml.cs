@@ -12,8 +12,9 @@ using DotA.Forms;
 using GeneralClasses;
 using Microsoft.AspNet.SignalR.Client;
 using static DotA.Kernel;
+using Form = GeneralClasses.Form;
 
-namespace DotA.Properties.Pages
+namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 {
 	/// <summary>
 	///     Логика взаимодействия для Game.xaml
@@ -25,6 +26,7 @@ namespace DotA.Properties.Pages
 		private readonly GameSettings _gs = new GameSettings();
 		private Forms.Form _dot;
 		private byte[,] _matrix;
+		private const byte MatrixDefolt = 255;
 		private bool[,] _boolMatrix;
 		public EventHandler<MyArgs> ExitClick;
 		public Main Main;
@@ -77,7 +79,7 @@ namespace DotA.Properties.Pages
 			yc -= OffsetY;
 			if (!((x >= OffsetX*LineWidth) && (x < (OffsetX + FieldW)*LineWidth) &&
 			      (y >= OffsetY*LineWidth) && (y < (OffsetY + FieldH)*LineWidth) &&
-			      _matrix[yc, xc] == 255)) return;
+			      _matrix[yc, xc] == MatrixDefolt)) return;
 			_dot.SetPosition(x, y);
 		}
 
@@ -97,7 +99,7 @@ namespace DotA.Properties.Pages
 			yc -= OffsetY;
 			if (!((x >= OffsetX*LineWidth) && (x < (OffsetX + FieldW)*LineWidth) &&
 			      (y >= OffsetY*LineWidth) && (y < (OffsetY + FieldH)*LineWidth) &&
-			      _matrix[yc, xc] == 255))
+			      _matrix[yc, xc] == MatrixDefolt))
 			{
 				MessageBox.Show("You can't do it!cli");
 				return;
@@ -221,9 +223,7 @@ namespace DotA.Properties.Pages
 			while (!Connected){}
 
 			User.UserName = TbName.Text;
-			var color = (byte)CbColor.SelectedIndex;
-			User.UserColorByte = color;
-			switch (color)
+			switch (CbColor.SelectedIndex)
 			{
 				case 0:
 					User.UserColor = Colors.Red;
@@ -242,19 +242,7 @@ namespace DotA.Properties.Pages
 					_dot.Color = Colors.Yellow;
 					break;
 			}
-			var form = (byte) CbForm.SelectedIndex;
-			switch (form)
-			{
-				case 0:
-					User.UserForm = Form.Circle;
-					break;
-				case 1:
-					User.UserForm = Form.Star;
-					break;
-				case 2:
-					User.UserForm = Form.Cross;
-					break;
-			}
+			User.UserForm = (Form) CbForm.SelectedIndex;
 			if (!RoomSeted)
 			{
 				if ((LvRooms.SelectedIndex == -1) || (LvRooms.Items[0] is ListViewItem))
@@ -265,7 +253,7 @@ namespace DotA.Properties.Pages
 			}
 			if (!LogIn)
 			{
-				await HubProxy.Invoke("join", User.UserName, color, form);
+				await HubProxy.Invoke("join", User);
 				while (!LogIn) { }
 			}
 			if (!RoomSeted)
@@ -289,10 +277,17 @@ namespace DotA.Properties.Pages
 			{
 				for (var j = 0; j < FieldW + 1; j++)
 				{
-					_matrix[i, j] = 255;
+					_matrix[i, j] = MatrixDefolt;
 					_boolMatrix[i, j] = false;
 				}
 			}
+			CloseField(new List<Dot>
+			{
+				new Dot(1, 1, User.UserColor),
+				new Dot(2, 2, User.UserColor),
+				new Dot(3, 1, User.UserColor),
+				new Dot(2, 0, User.UserColor)
+			});
 		}
 
 		private void AddRoom_Click (object sender, RoutedEventArgs e)
@@ -310,9 +305,7 @@ namespace DotA.Properties.Pages
 			if (await HubProxy.Invoke<bool>("AddRoom", key))
 			{
 				User.UserName = TbName.Text;
-				var color = (byte)CbColor.SelectedIndex;
-				User.UserColorByte = color;
-				switch (color)
+				switch (CbColor.SelectedIndex)
 				{
 					case 0:
 						User.UserColor = Colors.Red;
@@ -327,20 +320,8 @@ namespace DotA.Properties.Pages
 						User.UserColor = Colors.Yellow;
 						break;
 				}
-				var form = (byte)CbForm.SelectedIndex;
-				switch (form)
-				{
-					case 0:
-						User.UserForm = Form.Circle;
-						break;
-					case 1:
-						User.UserForm = Form.Star;
-						break;
-					case 2:
-						User.UserForm = Form.Cross;
-						break;
-				}
-				await HubProxy.Invoke("join", User.UserName, User.UserColorByte, (byte)User.UserForm);
+				User.UserForm = (Form) CbForm.SelectedIndex;
+				await HubProxy.Invoke("join", User);
 				while (!LogIn) { }
 				if (await HubProxy.Invoke<bool>("SetRoom", key))
 				{
@@ -496,45 +477,5 @@ namespace DotA.Properties.Pages
 				LvRooms.Items.Add(new ListViewItem {Content = "No opened rooms"});
 		}
 		#endregion
-	}
-
-	public class Dot
-	{
-		public Dot(int x, int y, Color color)
-		{
-			X = x;
-			Y = y;
-			Color = color;
-			if (color == Colors.Yellow) ColorInt = 3;
-			else if (color == Colors.Blue) ColorInt = 2;
-			else if (color == Colors.Green) ColorInt = 1;
-			else if (color == Colors.Red) ColorInt = 0;
-		}
-
-		public int X;
-		public int Y;
-		public Color Color;
-		public int ColorInt;
-	}
-
-	public class User
-	{
-		public string UserName { get; set; }
-		public Color UserColor { get; set; }
-		public byte UserColorByte { get; set; }
-		public Form UserForm { get; set; }
-	}
-
-	public class GameSettings
-	{
-		public int X { get; set; }
-		public int Y { get; set; }
-	}
-
-	public enum Form
-	{
-		Circle = 0,
-		Star = 1,
-		Cross = 2
 	}
 }

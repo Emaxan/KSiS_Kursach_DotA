@@ -14,6 +14,7 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Hosting;
 using Owin;
+using GeneralClasses;
 
 namespace DotA_Server
 {
@@ -127,12 +128,14 @@ namespace DotA_Server
 		private static readonly ConcurrentDictionary<string, ChatRoom> Rooms =
 			new ConcurrentDictionary<string, ChatRoom>(StringComparer.OrdinalIgnoreCase);
 
-		public void Join(string name, byte color, byte form)
+		private const byte MatrixDefault = 255;
+
+		public void Join(User user)
 		{
-			AddUser(name, color, form);
+			AddUser(user.UserName, user.UserColorByte, (byte)user.UserForm);
 			Clients.Caller.UserLoggedIn();
 			Application.Current.Dispatcher.Invoke(() =>
-				((MainWindow) Application.Current.MainWindow).WriteToConsole($"User {name} has id {Context.ConnectionId}"));
+				((MainWindow) Application.Current.MainWindow).WriteToConsole($"User {user.UserName} has id {Context.ConnectionId}"));
 		}
 
 		public void SendMessage(string name, string message)
@@ -299,7 +302,7 @@ namespace DotA_Server
 			{
 				for (var j = 0; j < x; j++)
 				{
-					Rooms[Clients.Caller.room].Matrix[i, j] = 255;
+					Rooms[Clients.Caller.room].Matrix[i, j] = MatrixDefault;
 				}
 			}
 			Application.Current.Dispatcher.Invoke(() =>
