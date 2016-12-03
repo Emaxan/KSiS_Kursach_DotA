@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using GeneralClasses;
 using Microsoft.AspNet.SignalR;
@@ -24,7 +25,11 @@ namespace DotA_Server
 	{
 		private const string ServerUri = "http://*:13666";
 		private StreamWriter _logger;
+		private string _logPath;
 		private bool? _started = false;
+		private Timer _t;
+		private const int TimerElapse = 10*60*1000; //10 minutes
+
 
 		public MainWindow()
 		{
@@ -35,10 +40,10 @@ namespace DotA_Server
 
 		private void Start_OnClick(object sender, RoutedEventArgs e)
 		{
-			var logPath = Assembly.GetExecutingAssembly().Location;
-			logPath = logPath?.Substring(0, logPath.LastIndexOf('\\'));
-			logPath += $"\\log\\{DateTime.Today.ToShortDateString()}_{DateTime.Now.ToShortTimeString().Replace(':', '.')}.txt";
-			_logger = new StreamWriter(logPath, true);
+			_logPath = Assembly.GetExecutingAssembly().Location;
+			_logPath = _logPath?.Substring(0, _logPath.LastIndexOf('\\'));
+			_logPath += $"\\log\\{DateTime.Today.ToShortDateString()}_{DateTime.Now.ToShortTimeString().Replace(':', '.')}.txt";
+			_logger = new StreamWriter(_logPath, true);
 			BStop.IsEnabled = true;
 			WriteToConsole("Starting server...");
 			BStart.IsEnabled = false;
@@ -65,6 +70,15 @@ namespace DotA_Server
 			Dispatcher.Invoke(() => BStop.IsEnabled = true);
 			WriteToConsole("Server started at " + ServerUri);
 			_started = true;
+			_t = new Timer(TimerElapse) { AutoReset = true };
+			_t.Elapsed += (o, args) =>
+			{
+				WriteToConsole("Flush.");
+				_logger.Flush();
+				_logger.Close();
+				_logger = new StreamWriter(_logPath, true);
+			};
+			_t.Start();
 		}
 
 		private void Stop_OnClick(object sender, RoutedEventArgs e)
@@ -76,6 +90,7 @@ namespace DotA_Server
 			_logger.Flush();
 			_logger.Close();
 			_started = false;
+			_t.Stop();
 		}
 
 		public void WriteToConsole(string message)
