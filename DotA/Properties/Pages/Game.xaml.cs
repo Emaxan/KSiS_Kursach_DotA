@@ -133,36 +133,35 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 			_matrix[yc, xc] = User.UserColorByte;
 			CMain.Children.Add(temp.Obj);
 			YourTurn = false;
-			if (AnalyzeMatrix(xc, yc))
+			var list = new List<Dot>();
+			if (AnalyzeMatrix(xc, yc, ref list))
 			{
 				//TODO send signals
+				await HubProxy.Invoke("SendField", list);
 			}
 		}
 
-		public bool AnalyzeMatrix(int x, int y)
+		public bool AnalyzeMatrix(int x, int y, ref List<Dot> path)
 		{
 			var list = new Stack<Dot>();
-			var res = TryCloseField(x, y, ref list);
-			if (!res) return false;
-			if (CloseField(list))
-			{
-				//TODO DoSmth
-
-				return true;
-			}
-			return false;
+			if (!TryCloseField(x, y, ref list)) return false;
+			if (!CloseField(list)) return false;
+			path = list.ToList();
+			return true;
 		}
 
 		private bool TryCloseField(int x, int y, ref Stack<Dot> stack)
 		{
-			if (stack.Count > 0)
+			if (stack.Count > 1)
 			{
-				var last = stack.Peek();
-				if ((last.X == x) && (last.Y == y)) return false;
+				var last = stack.Pop();
+				var prev = stack.Peek();
+				stack.Push(last);
+				if ((prev.X == x) && (prev.Y == y)) return false;
 			}
 			if (_boolMatrix[y, x]) return true;
 			_boolMatrix[y, x] = true;
-			stack.Push(new Dot(x, y, User.UserColor));
+			stack.Push(new Dot(x, y, User.UserColor, User.UserForm));
 			var res = false;
 
 			if ((y > 0) && (x > 0) && (_matrix[y - 1, x - 1] == User.UserColorByte))
@@ -197,12 +196,17 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 			{
 				res = TryCloseField(x + 1, y + 1, ref stack);
 			}
+			if (!res)
+			{
+				_boolMatrix[y, x] = false;
+				stack.Pop();
+			}
 			return res;
 		}
 
 		private bool CloseField(IEnumerable<Dot> list)
 		{
-			var dots = list as Dot[] ?? list.ToArray();
+			var dots = list.ToArray();
 			if ((list == null) || (!dots.Any())) return false;
 			var col = new PointCollection();
 			foreach (var dot in dots)
@@ -213,14 +217,13 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 			bg.A = 50;
 			var stroke = dots[0].Color;
 			stroke.A = 150;
-			var figure = new Polygon
+			CMain.Children.Add(new Polygon
 			{
 				Points = col,
 				Stroke = new SolidColorBrush(stroke),
 				StrokeThickness = 3,
 				Fill = new SolidColorBrush(bg)
-			};
-			CMain.Children.Add(figure);
+			});
 			return true;
 		}
 
@@ -307,10 +310,10 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 			}
 			CloseField(new List<Dot>
 			{
-				new Dot(1, 1, User.UserColor),
-				new Dot(2, 2, User.UserColor),
-				new Dot(3, 1, User.UserColor),
-				new Dot(2, 0, User.UserColor)
+				new Dot(1, 1, User.UserColor, User.UserForm),
+				new Dot(2, 2, User.UserColor, User.UserForm),
+				new Dot(3, 1, User.UserColor, User.UserForm),
+				new Dot(2, 0, User.UserColor, User.UserForm)
 			});
 		}
 
@@ -435,8 +438,12 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 			ServicePointManager.DefaultConnectionLimit = 10;
 			HubProxy = Connection.CreateHubProxy("MyHub");
 
-			HubProxy.On<string, string>("AddMessage", (name, message) => Dispatcher.Invoke(() => { MessageBox.Show($"{name}: {message}\r"); }));
-			HubProxy.On<string>("AddMessage", message => Dispatcher.Invoke(() => { MessageBox.Show($"{message}\r"); }));
+			HubProxy.On<string, string>("AddMessage", (name, message) => 
+																Dispatcher.Invoke(() => 
+																				MessageBox.Show($"{name}: {message}\r")
+																				)
+										);
+			HubProxy.On<string>("AddMessage", message => Dispatcher.Invoke(() => MessageBox.Show($"{message}\r")));
 			HubProxy.On("ConnectionComplete", () => Connected = true);
 			HubProxy.On("UserLoggedIn", () => LogIn = true);
 			HubProxy.On("RoomAdded", () => RoomAdded = true);
@@ -482,6 +489,7 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 				Application.Current.Dispatcher.Invoke(() => CMain.Children.Add(temp.Obj));
 			});
 			HubProxy.On("YourTurn", () => YourTurn = true);
+			HubProxy.On<List<Dot>>("CloseField", list => Application.Current.Dispatcher.Invoke(() => CloseField(list)));
 			try
 			{
 				await Connection.Start();

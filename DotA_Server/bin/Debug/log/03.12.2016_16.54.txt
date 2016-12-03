@@ -201,3 +201,246 @@
 03.12.2016 17:08:24: Client disconnected: 477e39bc-5417-4488-b55f-edf4f85de327
 03.12.2016 17:08:24: Client disconnected: 916ca466-5cb1-4bb4-a4f6-5df9b403aa69
 03.12.2016 17:14:41: Flush.
+03.12.2016 17:16:12: Client connected: 825d80bc-8543-4e69-8e97-14d75fa2da40
+03.12.2016 17:16:12: Server send list of rooms.
+03.12.2016 17:16:14: Room 1 deleted.
+03.12.2016 17:16:14: Server send list of rooms.
+03.12.2016 17:16:20: Room 1 added.
+03.12.2016 17:16:20: User Max has id 825d80bc-8543-4e69-8e97-14d75fa2da40
+03.12.2016 17:16:20: Server send list of users in the 1 room.
+03.12.2016 17:16:20: User Max insert to the 1 room.
+03.12.2016 17:16:20: Field of 1 room seted to 39:32 
+03.12.2016 17:16:20: Server send list of rooms.
+03.12.2016 17:16:30: Client connected: 5eb6da30-dcb4-485a-b54f-1cc0500671d7
+03.12.2016 17:16:30: Server send list of rooms.
+03.12.2016 17:16:34: User Rose has id 5eb6da30-dcb4-485a-b54f-1cc0500671d7
+03.12.2016 17:16:34: Server send list of users in the 1 room.
+03.12.2016 17:16:34: User Rose insert to the 1 room.
+03.12.2016 17:16:38: 1: Max set dot to position 3:1
+03.12.2016 17:16:40: 1: Rose set dot to position 2:2
+03.12.2016 17:16:42: 1: Max set dot to position 2:0
+03.12.2016 17:16:43: 1: Rose set dot to position 1:1
+03.12.2016 17:16:51: 1: Max set dot to position 19:15
+03.12.2016 17:16:52: 1: Rose set dot to position 20:15
+03.12.2016 17:16:53: 1: Max set dot to position 19:16
+03.12.2016 17:16:54: 1: Rose set dot to position 18:15
+03.12.2016 17:16:55: 1: Max set dot to position 19:14
+03.12.2016 17:16:56: 1: Rose set dot to position 19:13
+03.12.2016 17:16:58: 1: Max set dot to position 20:14
+03.12.2016 17:16:59: 1: Rose set dot to position 21:14
+03.12.2016 17:17:00: 1: Max set dot to position 21:13
+03.12.2016 17:17:01: 1: Rose set dot to position 20:13
+03.12.2016 17:17:03: 1: Max set dot to position 20:12
+03.12.2016 17:17:04: 1: Rose set dot to position 18:13
+03.12.2016 17:17:05: 1: Max set dot to position 19:12
+03.12.2016 17:17:06: 1: Rose set dot to position 18:14
+03.12.2016 17:17:08: 1: Max set dot to position 18:12
+03.12.2016 17:17:09: 1: Rose set dot to position 18:16
+03.12.2016 17:17:10: 1: Max set dot to position 17:12
+03.12.2016 17:17:11: 1: Rose set dot to position 19:17
+03.12.2016 17:17:12: 1: Max set dot to position 17:13
+03.12.2016 17:17:13: 1: Rose set dot to position 20:16
+03.12.2016 17:17:18: 1: Max set dot to position 17:14
+03.12.2016 17:17:18: 1: Rose set dot to position 16:14
+03.12.2016 17:17:19: 1: Max set dot to position 17:15
+03.12.2016 17:17:20: 1: Rose set dot to position 16:15
+03.12.2016 17:17:21: 1: Max set dot to position 17:16
+03.12.2016 17:17:22: 1: Rose set dot to position 16:16
+03.12.2016 17:17:22: 1: Max set dot to position 17:17
+03.12.2016 17:17:24: 1: Rose set dot to position 16:17
+03.12.2016 17:17:24: 1: Max set dot to position 18:17
+03.12.2016 17:17:28: 1: Rose set dot to position 21:15
+03.12.2016 17:17:29: 1: Max set dot to position 21:12
+03.12.2016 17:17:32: 1: Rose set dot to position 17:18
+03.12.2016 17:17:33: 1: Max set dot to position 18:18
+03.12.2016 17:17:34: 1: Rose set dot to position 17:19
+03.12.2016 17:17:35: 1: Max set dot to position 19:18
+03.12.2016 17:17:36: 1: Rose set dot to position 18:19
+03.12.2016 17:17:37: 1: Max set dot to position 19:19
+03.12.2016 17:17:39: 1: Rose set dot to position 18:20
+03.12.2016 17:17:41: 1: Max set dot to position 20:18
+03.12.2016 17:17:43: 1: Rose set dot to position 19:20
+03.12.2016 17:17:44: 1: Max set dot to position 20:17
+03.12.2016 17:17:46: 1: Rose set dot to position 20:19
+03.12.2016 17:17:48: 1: Max set dot to position 21:16
+03.12.2016 17:17:50: 1: Rose set dot to position 21:18
+03.12.2016 17:17:51: 1: Max set dot to position 21:17
+03.12.2016 17:17:52: 1: Rose set dot to position 22:17
+03.12.2016 17:17:53: 1: Max set dot to position 22:16
+03.12.2016 17:17:54: 1: Rose set dot to position 23:16
+03.12.2016 17:17:55: 1: Max set dot to position 22:15
+03.12.2016 17:17:56: 1: Rose set dot to position 23:15
+03.12.2016 17:17:57: 1: Max set dot to position 22:14
+03.12.2016 17:17:58: 1: Rose set dot to position 23:14
+03.12.2016 17:17:58: 1: Max set dot to position 22:13
+03.12.2016 17:17:59: 1: Rose set dot to position 23:13
+03.12.2016 17:18:40: Client disconnected: 5eb6da30-dcb4-485a-b54f-1cc0500671d7
+03.12.2016 17:18:40: Client disconnected: 825d80bc-8543-4e69-8e97-14d75fa2da40
+03.12.2016 17:24:41: Flush.
+03.12.2016 17:34:41: Flush.
+03.12.2016 17:44:41: Flush.
+03.12.2016 17:54:41: Flush.
+03.12.2016 18:04:41: Flush.
+03.12.2016 18:10:51: Client connected: e0bb6818-5983-4a71-a6b5-e9575fe20af2
+03.12.2016 18:10:52: Server send list of rooms.
+03.12.2016 18:10:54: Room 1 deleted.
+03.12.2016 18:10:54: Server send list of rooms.
+03.12.2016 18:11:02: Room Test added.
+03.12.2016 18:11:02: User Max has id e0bb6818-5983-4a71-a6b5-e9575fe20af2
+03.12.2016 18:11:02: Server send list of users in the Test room.
+03.12.2016 18:11:02: User Max insert to the Test room.
+03.12.2016 18:11:02: Field of Test room seted to 39:32 
+03.12.2016 18:11:02: Server send list of rooms.
+03.12.2016 18:11:11: Client connected: 69d41cf5-a950-4466-b4cf-3c650565aaf2
+03.12.2016 18:11:11: Server send list of rooms.
+03.12.2016 18:11:13: User Rose has id 69d41cf5-a950-4466-b4cf-3c650565aaf2
+03.12.2016 18:11:13: Server send list of users in the Test room.
+03.12.2016 18:11:13: User Rose insert to the Test room.
+03.12.2016 18:11:18: Test: Max set dot to position 2:2
+03.12.2016 18:11:27: Test: Rose set dot to position 2:3
+03.12.2016 18:11:32: Test: Max set dot to position 3:3
+03.12.2016 18:13:33: Client disconnected: e0bb6818-5983-4a71-a6b5-e9575fe20af2
+03.12.2016 18:14:41: Flush.
+03.12.2016 18:15:26: Client disconnected: 69d41cf5-a950-4466-b4cf-3c650565aaf2
+03.12.2016 18:16:57: Client connected: 5e03cb24-07c1-4030-bff0-34d6f2d3768d
+03.12.2016 18:16:57: Server send list of rooms.
+03.12.2016 18:16:59: Room Test deleted.
+03.12.2016 18:16:59: Server send list of rooms.
+03.12.2016 18:17:04: Room Test added.
+03.12.2016 18:17:04: User Max has id 5e03cb24-07c1-4030-bff0-34d6f2d3768d
+03.12.2016 18:17:04: Server send list of users in the Test room.
+03.12.2016 18:17:04: User Max insert to the Test room.
+03.12.2016 18:17:04: Field of Test room seted to 39:32 
+03.12.2016 18:17:04: Server send list of rooms.
+03.12.2016 18:17:11: Client connected: 8353f2d1-4bb7-403e-8b90-6c44c1e5e438
+03.12.2016 18:17:11: Server send list of rooms.
+03.12.2016 18:17:13: User Rose has id 8353f2d1-4bb7-403e-8b90-6c44c1e5e438
+03.12.2016 18:17:13: Server send list of users in the Test room.
+03.12.2016 18:17:13: User Rose insert to the Test room.
+03.12.2016 18:17:17: Test: Max set dot to position 16:11
+03.12.2016 18:17:22: Test: Rose set dot to position 16:12
+03.12.2016 18:17:25: Test: Max set dot to position 17:12
+03.12.2016 18:18:22: Client disconnected: 5e03cb24-07c1-4030-bff0-34d6f2d3768d
+03.12.2016 18:18:29: Client connected: 3eed673a-70f6-43f8-8bc3-5e605cd77d6d
+03.12.2016 18:18:29: Server send list of rooms.
+03.12.2016 18:18:32: Room Test deleted.
+03.12.2016 18:18:32: Server send list of rooms.
+03.12.2016 18:18:38: Room Test added.
+03.12.2016 18:18:38: User Max has id 3eed673a-70f6-43f8-8bc3-5e605cd77d6d
+03.12.2016 18:18:38: Server send list of users in the Test room.
+03.12.2016 18:18:38: User Max insert to the Test room.
+03.12.2016 18:18:38: Field of Test room seted to 39:32 
+03.12.2016 18:18:38: Server send list of rooms.
+03.12.2016 18:18:44: Client connected: be806528-d751-46c6-878c-cdd8718c8838
+03.12.2016 18:18:44: Server send list of rooms.
+03.12.2016 18:18:47: User Rose has id be806528-d751-46c6-878c-cdd8718c8838
+03.12.2016 18:18:47: Server send list of users in the Test room.
+03.12.2016 18:18:47: User Rose insert to the Test room.
+03.12.2016 18:18:47: Client disconnected: 8353f2d1-4bb7-403e-8b90-6c44c1e5e438
+03.12.2016 18:18:49: Test: Max set dot to position 18:14
+03.12.2016 18:18:57: Test: Rose set dot to position 18:15
+03.12.2016 18:18:59: Test: Max set dot to position 19:15
+03.12.2016 18:20:28: Client disconnected: 3eed673a-70f6-43f8-8bc3-5e605cd77d6d
+03.12.2016 18:22:37: Client disconnected: be806528-d751-46c6-878c-cdd8718c8838
+03.12.2016 18:24:22: Client connected: fd980a44-d9e1-4be1-bed7-40e3569ac03f
+03.12.2016 18:24:22: Server send list of rooms.
+03.12.2016 18:24:25: Room Test deleted.
+03.12.2016 18:24:25: Server send list of rooms.
+03.12.2016 18:24:31: Room Test added.
+03.12.2016 18:24:31: User Rose has id fd980a44-d9e1-4be1-bed7-40e3569ac03f
+03.12.2016 18:24:31: Server send list of users in the Test room.
+03.12.2016 18:24:31: User Rose insert to the Test room.
+03.12.2016 18:24:31: Field of Test room seted to 39:32 
+03.12.2016 18:24:31: Server send list of rooms.
+03.12.2016 18:24:38: Client connected: 96f8dac2-36c6-4a34-a50c-f280c86be779
+03.12.2016 18:24:38: Server send list of rooms.
+03.12.2016 18:24:41: Flush.
+03.12.2016 18:24:42: User Rose has id 96f8dac2-36c6-4a34-a50c-f280c86be779
+03.12.2016 18:24:42: Server send list of users in the Test room.
+03.12.2016 18:24:42: User Rose insert to the Test room.
+03.12.2016 18:24:48: Test: Rose set dot to position 18:14
+03.12.2016 18:24:50: Test: Rose set dot to position 18:15
+03.12.2016 18:24:51: Test: Rose set dot to position 19:15
+03.12.2016 18:24:53: Test: Rose set dot to position 19:16
+03.12.2016 18:24:55: Test: Rose set dot to position 18:16
+03.12.2016 18:24:56: Test: Rose set dot to position 18:17
+03.12.2016 18:24:58: Test: Rose set dot to position 17:15
+03.12.2016 18:25:01: Test: Rose set dot to position 17:16
+03.12.2016 18:25:05: Test: Rose set dot to position 16:16
+03.12.2016 18:25:07: Test: Rose set dot to position 17:18
+03.12.2016 18:25:08: Test: Rose set dot to position 17:17
+03.12.2016 18:25:15: Test: Rose set dot to position 16:17
+03.12.2016 18:25:18: Test: Rose set dot to position 16:15
+03.12.2016 18:25:20: Test: Rose set dot to position 17:14
+03.12.2016 18:25:25: Test: Rose set dot to position 16:14
+03.12.2016 18:25:26: Test: Rose set dot to position 18:13
+03.12.2016 18:25:28: Test: Rose set dot to position 16:13
+03.12.2016 18:25:29: Test: Rose set dot to position 19:14
+03.12.2016 18:25:34: Test: Rose set dot to position 24:7
+03.12.2016 18:25:35: Test: Rose set dot to position 25:7
+03.12.2016 18:25:36: Test: Rose set dot to position 25:6
+03.12.2016 18:25:38: Test: Rose set dot to position 26:6
+03.12.2016 18:25:39: Test: Rose set dot to position 26:7
+03.12.2016 18:25:41: Test: Rose set dot to position 26:8
+03.12.2016 18:25:42: Test: Rose set dot to position 25:8
+03.12.2016 18:25:43: Test: Rose set dot to position 27:7
+03.12.2016 18:26:02: Test: Rose set dot to position 8:6
+03.12.2016 18:26:04: Test: Rose set dot to position 9:6
+03.12.2016 18:26:05: Test: Rose set dot to position 9:5
+03.12.2016 18:26:07: Test: Rose set dot to position 9:7
+03.12.2016 18:26:08: Test: Rose set dot to position 10:6
+03.12.2016 18:26:10: Test: Rose set dot to position 10:7
+03.12.2016 18:26:11: Test: Rose set dot to position 11:5
+03.12.2016 18:26:15: Test: Rose set dot to position 11:7
+03.12.2016 18:26:17: Test: Rose set dot to position 12:6
+03.12.2016 18:26:19: Test: Rose set dot to position 11:6
+03.12.2016 18:26:22: Test: Rose set dot to position 12:7
+03.12.2016 18:26:24: Test: Rose set dot to position 26:9
+03.12.2016 18:26:25: Test: Rose set dot to position 8:7
+03.12.2016 18:26:26: Test: Rose set dot to position 25:9
+03.12.2016 18:26:28: Test: Rose set dot to position 9:8
+03.12.2016 18:26:29: Test: Rose set dot to position 24:8
+03.12.2016 18:26:31: Test: Rose set dot to position 11:8
+03.12.2016 18:26:33: Test: Rose set dot to position 23:7
+03.12.2016 18:26:37: Test: Rose set dot to position 9:9
+03.12.2016 18:26:39: Test: Rose set dot to position 24:6
+03.12.2016 18:26:40: Test: Rose set dot to position 11:9
+03.12.2016 18:26:42: Test: Rose set dot to position 25:5
+03.12.2016 18:26:43: Test: Rose set dot to position 10:9
+03.12.2016 18:26:58: Test: Rose set dot to position 10:8
+03.12.2016 18:27:41: Client connected: f19ba941-9e8c-487b-aa12-0de9ea24aa15
+03.12.2016 18:27:41: Server send list of rooms.
+03.12.2016 18:27:45: Room Test deleted.
+03.12.2016 18:27:45: Server send list of rooms.
+03.12.2016 18:27:47: Room 1 added.
+03.12.2016 18:27:47: User Max has id f19ba941-9e8c-487b-aa12-0de9ea24aa15
+03.12.2016 18:27:47: Server send list of users in the 1 room.
+03.12.2016 18:27:47: User Max insert to the 1 room.
+03.12.2016 18:27:47: Field of 1 room seted to 39:32 
+03.12.2016 18:27:47: Server send list of rooms.
+03.12.2016 18:27:53: Client disconnected: fd980a44-d9e1-4be1-bed7-40e3569ac03f
+03.12.2016 18:27:53: Client disconnected: 96f8dac2-36c6-4a34-a50c-f280c86be779
+03.12.2016 18:27:55: Client connected: fffc2a9c-d634-459e-a0e1-e0165f860244
+03.12.2016 18:27:55: Server send list of rooms.
+03.12.2016 18:27:56: User Rose has id fffc2a9c-d634-459e-a0e1-e0165f860244
+03.12.2016 18:27:56: Server send list of users in the 1 room.
+03.12.2016 18:27:56: User Rose insert to the 1 room.
+03.12.2016 18:28:05: 1: Max set dot to position 19:12
+03.12.2016 18:28:11: 1: Rose set dot to position 19:13
+03.12.2016 18:28:12: 1: Max set dot to position 20:13
+03.12.2016 18:28:22: 1: Rose set dot to position 20:14
+03.12.2016 18:28:24: 1: Max set dot to position 18:13
+03.12.2016 18:28:34: 1: Rose set dot to position 20:12
+03.12.2016 18:28:37: 1: Max set dot to position 19:14
+03.12.2016 18:28:54: 1: Rose set dot to position 21:13
+03.12.2016 18:28:57: 1: Max set dot to position 20:15
+03.12.2016 18:30:13: 1: Rose set dot to position 21:15
+03.12.2016 18:30:15: 1: Max set dot to position 21:14
+03.12.2016 18:31:23: Client disconnected: f19ba941-9e8c-487b-aa12-0de9ea24aa15
+03.12.2016 18:31:28: Client disconnected: fffc2a9c-d634-459e-a0e1-e0165f860244
+03.12.2016 18:34:41: Flush.
+03.12.2016 18:44:41: Flush.
+03.12.2016 18:54:41: Flush.
+03.12.2016 19:04:41: Flush.
+03.12.2016 19:14:41: Flush.
+03.12.2016 19:19:25: Server stoped...

@@ -4,15 +4,17 @@ namespace GeneralClasses
 {
 	public class Dot
 	{
-		public Dot(int x, int y, Color color)
+		public Dot(int x, int y, Color color, Form form)
 		{
 			X = x;
 			Y = y;
 			Color = color;
+			Form = form;
 		}
 
 		public int X;
 		public int Y;
+		public Form Form;
 
 		private Color _color;
 		public Color Color

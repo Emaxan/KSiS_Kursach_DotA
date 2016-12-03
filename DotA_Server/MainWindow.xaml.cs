@@ -29,6 +29,7 @@ namespace DotA_Server
 		private bool? _started = false;
 		private Timer _t;
 		private const int TimerElapse = 10*60*1000; //10 minutes
+		public IDisposable SignalR { get; set; }
 
 
 		public MainWindow()
@@ -36,7 +37,6 @@ namespace DotA_Server
 			InitializeComponent();
 		}
 
-		public IDisposable SignalR { get; set; }
 
 		private void Start_OnClick(object sender, RoutedEventArgs e)
 		{
@@ -332,7 +332,8 @@ namespace DotA_Server
 					((MainWindow)Application.Current.MainWindow).WriteToConsole($"Error {(x < 0 ? "x<0" : "")} {(y < 0 ? "y<0" : "")} {(x > Rooms[Clients.Caller.room].FieldX ? "x>field" : "")} {(y > Rooms[Clients.Caller.room].FieldY ? "y>field" : "")} {(Rooms[Clients.Caller.room].Matrix[y, x] != 255 ? "dot seted" : "")}."));
 				return false;
 			}
-			Rooms[Clients.Caller.room].Matrix[y, x] = (byte)Clients.Caller.color; Application.Current.Dispatcher.Invoke(() =>
+			Rooms[Clients.Caller.room].Matrix[y, x] = (byte)Clients.Caller.color;
+			Application.Current.Dispatcher.Invoke(() =>
 				 ((MainWindow)Application.Current.MainWindow).WriteToConsole($"{Clients.Caller.room}: {Clients.Caller.name} set dot to position {x}:{y}"));
 			foreach (var user in UserRooms.Where(u => u.Value.Contains(Clients.Caller.room)).Where(user => !user.Key.Equals(Context.ConnectionId)))
 			{
@@ -342,6 +343,22 @@ namespace DotA_Server
 			Clients.Client(queue).YourTurn();
 			Rooms[Clients.Caller.room].Queue.Enqueue(queue);
 			return true;
+		}
+
+		public void SendField(List<Dot> list)
+		{
+			Application.Current.Dispatcher.Invoke(() =>
+				 ((MainWindow)Application.Current.MainWindow).WriteToConsole(
+					 list.Aggregate(
+								$"{Clients.Caller.room}: {Clients.Caller.name} close his/her field:\n", 
+								(current, dot) => current + $"({dot.X},{dot.Y}) => "
+									) + $"\nColor:{Clients.Caller.UserColor}\nForm:{Clients.Caller.UserForm}")
+				 );
+			foreach (var user in
+					UserRooms.Where(u => u.Value.Contains(Clients.Caller.room))
+							 .Where(user => !user.Key.Equals(Context.ConnectionId))
+					)
+				Clients.Client(user.Key).CloseField(list);
 		}
 	}
 }
