@@ -1,0 +1,203 @@
+03.12.2016 16:54:40: Starting server...
+03.12.2016 16:54:41: Server started at http://*:13666
+03.12.2016 16:54:53: Client connected: 32a03c81-4630-4f26-b6ab-d4f6014b25fe
+03.12.2016 16:54:53: Server send list of rooms.
+03.12.2016 16:55:01: Room 1 added.
+03.12.2016 16:55:01: User Rose has id 32a03c81-4630-4f26-b6ab-d4f6014b25fe
+03.12.2016 16:55:01: Server send list of users in the 1 room.
+03.12.2016 16:55:01: User Rose insert to the 1 room.
+03.12.2016 16:55:01: Field of 1 room seted to 39:32 
+03.12.2016 16:55:01: Server send list of rooms.
+03.12.2016 16:56:07: Client connected: 5dc76181-f0d9-4ed9-8afd-9d73801e48a8
+03.12.2016 16:56:07: Server send list of rooms.
+03.12.2016 16:56:09: Room 1 deleted.
+03.12.2016 16:56:09: Server send list of rooms.
+03.12.2016 16:56:13: Room  added.
+03.12.2016 16:56:13: User Max has id 5dc76181-f0d9-4ed9-8afd-9d73801e48a8
+03.12.2016 16:56:13: Server send list of users in the  room.
+03.12.2016 16:56:13: User Max insert to the  room.
+03.12.2016 16:56:13: Field of  room seted to 39:32 
+03.12.2016 16:56:13: Server send list of rooms.
+03.12.2016 16:56:27: Client connected: 8d985080-090e-4fea-af50-dbe1b45e4975
+03.12.2016 16:56:27: Server send list of rooms.
+03.12.2016 16:56:33: Client disconnected: 32a03c81-4630-4f26-b6ab-d4f6014b25fe
+03.12.2016 16:56:34: User Rose has id 8d985080-090e-4fea-af50-dbe1b45e4975
+03.12.2016 16:56:34: Server send list of users in the  room.
+03.12.2016 16:56:34: User Rose insert to the  room.
+03.12.2016 16:57:08: Client connected: 5033e50a-7597-43e4-aa3e-be9db1e5a937
+03.12.2016 16:57:08: Server send list of rooms.
+03.12.2016 16:57:10: Room  deleted.
+03.12.2016 16:57:10: Server send list of rooms.
+03.12.2016 16:57:14: Room 1 added.
+03.12.2016 16:57:14: User Max has id 5033e50a-7597-43e4-aa3e-be9db1e5a937
+03.12.2016 16:57:14: Server send list of users in the 1 room.
+03.12.2016 16:57:14: User Max insert to the 1 room.
+03.12.2016 16:57:14: Field of 1 room seted to 39:32 
+03.12.2016 16:57:14: Server send list of rooms.
+03.12.2016 16:57:18: Client disconnected: 5dc76181-f0d9-4ed9-8afd-9d73801e48a8
+03.12.2016 16:57:18: Client disconnected: 8d985080-090e-4fea-af50-dbe1b45e4975
+03.12.2016 16:57:23: Client connected: f7a4fda6-af42-4c30-a13f-f0403be65ab3
+03.12.2016 16:57:23: Server send list of rooms.
+03.12.2016 16:57:26: User Rose has id f7a4fda6-af42-4c30-a13f-f0403be65ab3
+03.12.2016 16:57:26: Server send list of users in the 1 room.
+03.12.2016 16:57:26: User Rose insert to the 1 room.
+03.12.2016 16:57:29: 1: Max set dot to position 3:1
+03.12.2016 16:57:31: 1: Rose set dot to position 2:2
+03.12.2016 16:57:35: 1: Max set dot to position 1:1
+03.12.2016 16:57:36: 1: Rose set dot to position 2:0
+03.12.2016 16:58:13: Client disconnected: f7a4fda6-af42-4c30-a13f-f0403be65ab3
+03.12.2016 16:58:13: Client disconnected: 5033e50a-7597-43e4-aa3e-be9db1e5a937
+03.12.2016 16:58:45: Client connected: d79c76af-786f-4f6a-8c90-5ca8c9ab4afa
+03.12.2016 16:58:45: Server send list of rooms.
+03.12.2016 16:58:49: Room 1 deleted.
+03.12.2016 16:58:49: Server send list of rooms.
+03.12.2016 16:58:51: Room 1 added.
+03.12.2016 16:58:51: User Max has id d79c76af-786f-4f6a-8c90-5ca8c9ab4afa
+03.12.2016 16:58:51: Server send list of users in the 1 room.
+03.12.2016 16:58:51: User Max insert to the 1 room.
+03.12.2016 16:58:51: Field of 1 room seted to 39:32 
+03.12.2016 16:58:51: Server send list of rooms.
+03.12.2016 16:59:03: Client connected: 43a93e76-3916-4b27-9a2f-2f6fe5628d29
+03.12.2016 16:59:03: Server send list of rooms.
+03.12.2016 16:59:09: User Rose has id 43a93e76-3916-4b27-9a2f-2f6fe5628d29
+03.12.2016 16:59:09: Server send list of users in the 1 room.
+03.12.2016 16:59:09: User Rose insert to the 1 room.
+03.12.2016 16:59:13: 1: Max set dot to position 2:2
+03.12.2016 16:59:14: 1: Rose set dot to position 3:1
+03.12.2016 16:59:16: 1: Max set dot to position 2:0
+03.12.2016 16:59:17: 1: Rose set dot to position 1:1
+03.12.2016 16:59:34: 1: Max set dot to position 21:10
+03.12.2016 16:59:42: 1: Rose set dot to position 6:5
+03.12.2016 16:59:44: 1: Max set dot to position 13:15
+03.12.2016 16:59:45: 1: Rose set dot to position 20:14
+03.12.2016 16:59:45: 1: Max set dot to position 14:6
+03.12.2016 16:59:46: 1: Rose set dot to position 24:22
+03.12.2016 16:59:47: 1: Max set dot to position 8:10
+03.12.2016 16:59:48: 1: Rose set dot to position 30:5
+03.12.2016 16:59:49: 1: Max set dot to position 21:4
+03.12.2016 16:59:49: 1: Rose set dot to position 30:16
+03.12.2016 16:59:50: 1: Max set dot to position 18:11
+03.12.2016 16:59:51: 1: Rose set dot to position 31:11
+03.12.2016 16:59:51: 1: Max set dot to position 19:6
+03.12.2016 16:59:52: 1: Rose set dot to position 13:20
+03.12.2016 16:59:53: 1: Max set dot to position 6:15
+03.12.2016 16:59:53: 1: Rose set dot to position 11:8
+03.12.2016 16:59:54: 1: Max set dot to position 10:15
+03.12.2016 16:59:55: 1: Rose set dot to position 20:22
+03.12.2016 16:59:55: 1: Max set dot to position 25:16
+03.12.2016 16:59:56: 1: Rose set dot to position 16:19
+03.12.2016 16:59:57: 1: Max set dot to position 15:11
+03.12.2016 16:59:58: 1: Rose set dot to position 28:6
+03.12.2016 16:59:58: 1: Max set dot to position 23:8
+03.12.2016 16:59:59: 1: Rose set dot to position 28:22
+03.12.2016 17:00:05: 1: Max set dot to position 14:7
+03.12.2016 17:00:06: 1: Rose set dot to position 12:8
+03.12.2016 17:00:07: 1: Max set dot to position 14:8
+03.12.2016 17:00:08: 1: Rose set dot to position 13:8
+03.12.2016 17:00:09: 1: Max set dot to position 14:9
+03.12.2016 17:00:10: 1: Rose set dot to position 15:8
+03.12.2016 17:00:12: 1: Max set dot to position 15:10
+03.12.2016 17:00:15: 1: Rose set dot to position 10:8
+03.12.2016 17:00:16: 1: Max set dot to position 17:11
+03.12.2016 17:00:17: 1: Rose set dot to position 13:10
+03.12.2016 17:00:18: 1: Max set dot to position 16:11
+03.12.2016 17:00:20: 1: Rose set dot to position 11:9
+03.12.2016 17:00:21: 1: Max set dot to position 17:10
+03.12.2016 17:00:22: 1: Rose set dot to position 12:10
+03.12.2016 17:00:23: 1: Max set dot to position 17:9
+03.12.2016 17:00:25: 1: Rose set dot to position 13:9
+03.12.2016 17:00:26: 1: Max set dot to position 16:8
+03.12.2016 17:00:27: 1: Rose set dot to position 13:11
+03.12.2016 17:00:29: 1: Max set dot to position 15:7
+03.12.2016 17:00:31: 1: Rose set dot to position 12:9
+03.12.2016 17:00:33: 1: Max set dot to position 14:10
+03.12.2016 17:00:34: 1: Rose set dot to position 15:9
+03.12.2016 17:00:35: 1: Max set dot to position 14:11
+03.12.2016 17:00:36: 1: Rose set dot to position 16:9
+03.12.2016 17:00:39: 1: Max set dot to position 18:10
+03.12.2016 17:00:40: 1: Rose set dot to position 16:10
+03.12.2016 17:00:41: 1: Max set dot to position 19:11
+03.12.2016 17:01:28: Client disconnected: d79c76af-786f-4f6a-8c90-5ca8c9ab4afa
+03.12.2016 17:01:28: Client disconnected: 43a93e76-3916-4b27-9a2f-2f6fe5628d29
+03.12.2016 17:03:01: Client connected: 86f79d8f-751c-4b16-9d9c-62fc0714936d
+03.12.2016 17:03:01: Server send list of rooms.
+03.12.2016 17:03:03: Room 1 deleted.
+03.12.2016 17:03:03: Server send list of rooms.
+03.12.2016 17:03:08: Room 1 added.
+03.12.2016 17:03:08: User Max has id 86f79d8f-751c-4b16-9d9c-62fc0714936d
+03.12.2016 17:03:08: Server send list of users in the 1 room.
+03.12.2016 17:03:08: User Max insert to the 1 room.
+03.12.2016 17:03:08: Field of 1 room seted to 39:32 
+03.12.2016 17:03:08: Server send list of rooms.
+03.12.2016 17:03:38: Client connected: 5726249b-cf5e-446b-a137-f33fc02b2d13
+03.12.2016 17:03:38: Server send list of rooms.
+03.12.2016 17:03:40: User Max has id 5726249b-cf5e-446b-a137-f33fc02b2d13
+03.12.2016 17:03:40: Server send list of users in the 1 room.
+03.12.2016 17:03:40: User Max insert to the 1 room.
+03.12.2016 17:03:54: Client disconnected: 86f79d8f-751c-4b16-9d9c-62fc0714936d
+03.12.2016 17:04:19: Client disconnected: 5726249b-cf5e-446b-a137-f33fc02b2d13
+03.12.2016 17:04:20: Client connected: 8e3dd1f5-9761-42c8-bfc8-6dd9068b26a3
+03.12.2016 17:04:20: Server send list of rooms.
+03.12.2016 17:04:22: User Max has id 8e3dd1f5-9761-42c8-bfc8-6dd9068b26a3
+03.12.2016 17:04:22: Server send list of users in the 1 room.
+03.12.2016 17:04:22: User Max insert to the 1 room.
+03.12.2016 17:04:41: Flush.
+03.12.2016 17:04:41: Client connected: 68aabb1d-b804-4eb3-8411-e510265d83d9
+03.12.2016 17:04:41: Server send list of rooms.
+03.12.2016 17:04:42: User Max has id 68aabb1d-b804-4eb3-8411-e510265d83d9
+03.12.2016 17:04:42: Server send list of users in the 1 room.
+03.12.2016 17:04:42: User Max insert to the 1 room.
+03.12.2016 17:04:58: Client connected: 30fd4826-5961-4473-9564-33638a741df4
+03.12.2016 17:04:58: Server send list of rooms.
+03.12.2016 17:04:59: Client disconnected: 8e3dd1f5-9761-42c8-bfc8-6dd9068b26a3
+03.12.2016 17:05:00: User Max has id 30fd4826-5961-4473-9564-33638a741df4
+03.12.2016 17:05:00: Server send list of users in the 1 room.
+03.12.2016 17:05:00: User Max insert to the 1 room.
+03.12.2016 17:05:18: Client connected: 7a2e9d7b-0cd4-4b39-9d7c-d7c4be9948d8
+03.12.2016 17:05:18: Server send list of rooms.
+03.12.2016 17:05:19: Client disconnected: 68aabb1d-b804-4eb3-8411-e510265d83d9
+03.12.2016 17:05:20: User Max has id 7a2e9d7b-0cd4-4b39-9d7c-d7c4be9948d8
+03.12.2016 17:05:20: Server send list of users in the 1 room.
+03.12.2016 17:05:20: User Max insert to the 1 room.
+03.12.2016 17:05:39: Client disconnected: 30fd4826-5961-4473-9564-33638a741df4
+03.12.2016 17:05:46: Client connected: 1e61795e-8632-456f-9856-717fe8721190
+03.12.2016 17:05:47: Server send list of rooms.
+03.12.2016 17:05:48: User Max has id 1e61795e-8632-456f-9856-717fe8721190
+03.12.2016 17:05:48: Server send list of users in the 1 room.
+03.12.2016 17:05:48: User Max insert to the 1 room.
+03.12.2016 17:05:59: Client disconnected: 7a2e9d7b-0cd4-4b39-9d7c-d7c4be9948d8
+03.12.2016 17:06:20: Client connected: 28f6d100-8eb1-4265-a250-c5a09a7764f6
+03.12.2016 17:06:20: Server send list of rooms.
+03.12.2016 17:06:23: User Max has id 28f6d100-8eb1-4265-a250-c5a09a7764f6
+03.12.2016 17:06:23: Server send list of users in the 1 room.
+03.12.2016 17:06:23: User Max insert to the 1 room.
+03.12.2016 17:06:34: Client disconnected: 1e61795e-8632-456f-9856-717fe8721190
+03.12.2016 17:06:43: Client connected: e98f46e0-4b95-484c-901e-b9604881c623
+03.12.2016 17:06:43: Server send list of rooms.
+03.12.2016 17:06:45: User Max has id e98f46e0-4b95-484c-901e-b9604881c623
+03.12.2016 17:06:45: Server send list of users in the 1 room.
+03.12.2016 17:06:45: User Max insert to the 1 room.
+03.12.2016 17:06:58: Client connected: 477e39bc-5417-4488-b55f-edf4f85de327
+03.12.2016 17:06:59: Server send list of rooms.
+03.12.2016 17:07:02: Room 1 deleted.
+03.12.2016 17:07:02: Server send list of rooms.
+03.12.2016 17:07:04: Client disconnected: 28f6d100-8eb1-4265-a250-c5a09a7764f6
+03.12.2016 17:07:07: Room 1 added.
+03.12.2016 17:07:07: User Max has id 477e39bc-5417-4488-b55f-edf4f85de327
+03.12.2016 17:07:07: Server send list of users in the 1 room.
+03.12.2016 17:07:07: User Max insert to the 1 room.
+03.12.2016 17:07:07: Field of 1 room seted to 39:32 
+03.12.2016 17:07:07: Server send list of rooms.
+03.12.2016 17:07:13: Client connected: 916ca466-5cb1-4bb4-a4f6-5df9b403aa69
+03.12.2016 17:07:13: Server send list of rooms.
+03.12.2016 17:07:17: User Rose has id 916ca466-5cb1-4bb4-a4f6-5df9b403aa69
+03.12.2016 17:07:17: Server send list of users in the 1 room.
+03.12.2016 17:07:17: User Rose insert to the 1 room.
+03.12.2016 17:07:20: 1: Max set dot to position 2:2
+03.12.2016 17:07:22: 1: Rose set dot to position 3:1
+03.12.2016 17:07:24: 1: Max set dot to position 1:1
+03.12.2016 17:07:24: Client disconnected: e98f46e0-4b95-484c-901e-b9604881c623
+03.12.2016 17:07:25: 1: Rose set dot to position 2:0
+03.12.2016 17:08:24: Client disconnected: 477e39bc-5417-4488-b55f-edf4f85de327
+03.12.2016 17:08:24: Client disconnected: 916ca466-5cb1-4bb4-a4f6-5df9b403aa69
+03.12.2016 17:14:41: Flush.

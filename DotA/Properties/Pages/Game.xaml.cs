@@ -31,6 +31,7 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 		public EventHandler<MyArgs> ExitClick;
 		public Main Main;
 		public User User = new User();
+		public byte SelectedUserForm = 255;
 
 		public Game()
 		{
@@ -61,7 +62,7 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 					CbForm.SelectedIndex = 1;
 					break;
 				case Form.Triangle:
-					_dot = new Cross(User.UserColor);
+					_dot = new Triangle(User.UserColor);
 					CbForm.SelectedIndex = 2;
 					break;
 				default:
@@ -118,7 +119,7 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 					temp = new Star(User.UserColor);
 					break;
 				case Form.Triangle:
-					temp = new Cross(User.UserColor);
+					temp = new Triangle(User.UserColor);
 					break;
 				default:
 					throw new ArgumentOutOfRangeException();
@@ -210,10 +211,12 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 			}
 			var bg = dots[0].Color;
 			bg.A = 50;
+			var stroke = dots[0].Color;
+			stroke.A = 150;
 			var figure = new Polygon
 			{
 				Points = col,
-				Stroke = new SolidColorBrush(dots[0].Color),
+				Stroke = new SolidColorBrush(stroke),
 				StrokeThickness = 3,
 				Fill = new SolidColorBrush(bg)
 			};
@@ -249,6 +252,21 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 					break;
 			}
 			User.UserForm = (Form) CbForm.SelectedIndex;
+			switch (User.UserForm)
+			{
+				case Form.Circle:
+					_dot = new Circle(User.UserColor);
+					break;
+				case Form.Star:
+					_dot = new Star(User.UserColor);
+					break;
+				case Form.Triangle:
+					_dot = new Triangle(User.UserColor);
+					break;
+				default:
+					//Todo Error!!!
+					break;
+			}
 			if (!RoomSeted)
 			{
 				if ((LvRooms.SelectedIndex == -1) || (LvRooms.Items[0] is ListViewItem))
@@ -454,7 +472,7 @@ namespace DotA.Properties.Pages//TODO When user quit game change turn queue
 						temp = new Star(ucolor);
 						break;
 					case 2:
-						temp = new Cross(ucolor);
+						temp = new Triangle(ucolor);
 						break;
 					default:
 						throw new ArgumentOutOfRangeException();

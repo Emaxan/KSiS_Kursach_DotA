@@ -1,0 +1,20 @@
+03.12.2016 16:29:47: Starting server...
+03.12.2016 16:29:47: Server started at http://*:13666
+03.12.2016 16:30:05: Client connected: 91c96a2c-cf39-4d16-b889-d5ebf2a9f719
+03.12.2016 16:30:05: Server send list of rooms.
+03.12.2016 16:30:12: Room 1 added.
+03.12.2016 16:30:12: User Max has id 91c96a2c-cf39-4d16-b889-d5ebf2a9f719
+03.12.2016 16:30:12: Server send list of users in the 1 room.
+03.12.2016 16:30:12: User Max insert to the 1 room.
+03.12.2016 16:30:12: Field of 1 room seted to 39:32 
+03.12.2016 16:30:12: Server send list of rooms.
+03.12.2016 16:30:28: Client connected: 5cca05a9-9ff2-430c-aa82-aa23f8344e21
+03.12.2016 16:30:28: Server send list of rooms.
+03.12.2016 16:30:37: User Rose has id 5cca05a9-9ff2-430c-aa82-aa23f8344e21
+03.12.2016 16:30:37: Server send list of users in the 1 room.
+03.12.2016 16:30:37: User Rose insert to the 1 room.
+03.12.2016 16:30:42: 1: Max set dot to position 2:2
+03.12.2016 16:30:43: 1: Rose set dot to position 3:1
+03.12.2016 16:30:45: 1: Max set dot to position 2:0
+03.12.2016 16:30:46: 1: Rose set dot to position 1:1
+03.12.2016 16:30:58: Server stoped...

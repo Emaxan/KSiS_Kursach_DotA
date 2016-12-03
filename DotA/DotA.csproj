@@ -106,7 +106,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Forms\Circle.cs" />
-    <Compile Include="Forms\Cross.cs" />
+    <Compile Include="Forms\Triangle.cs" />
     <Compile Include="Forms\Form.cs" />
     <Compile Include="Forms\Star.cs" />
     <Compile Include="Kernel.cs" />
